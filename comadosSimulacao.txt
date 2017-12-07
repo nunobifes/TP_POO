@@ -1,0 +1,14 @@
+ninho 1 1
+criaf 1 C 1
+cria1 V 2 3 3
+migalha 4 4
+foca 5 5 
+tempo
+tempo 2
+energninho 3 4
+energformiga 2 4 3
+mata 5 5 
+inseticida 3
+listamundo
+listaninho 6
+listaposicao 4 4 

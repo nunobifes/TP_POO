@@ -1,0 +1,11 @@
+defmundo 30 30
+defen 1
+defpc 50
+defmi 0 100
+defme 1
+defnm 100
+inicio
+guarda cenas
+muda cenas
+apaga cenas
+sair
