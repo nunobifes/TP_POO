@@ -18,7 +18,22 @@
     <ClInclude Include="Consola.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utilizador.h">
+    <ClInclude Include="Formiga.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ninhos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Comunidades.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mundo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Migalha.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Screen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -27,6 +42,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="principal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Formiga.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ninhos.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Comunidades.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mundo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Migalhas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
