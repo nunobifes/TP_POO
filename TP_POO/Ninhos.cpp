@@ -3,21 +3,31 @@
 
 
 #include "Ninhos.h"
+#include "Formiga.h"
 
-void ninho::setId(char i) {
+
+void Ninhos::setId(int i) {
 	this->id = i;
 }
 
-void ninho::setEnergia(int e) {
+void Ninhos::setEnergia(int e) {
 	this->energia = e;
 }
 
-void ninho::setCoord(int l, int c) {
-	this->linha = l;
-	this->coluna = c;
+/*void Ninhos::insereNinho(Formiga *fr) {
+	v.push_back(fr);
+	fr->LigaNinho(this);
 
+}*/
+
+void Ninhos::setPosX(int x) {
+	this->x = x;
 }
 
-ninho::~ninho() {
+void Ninhos::setPosY(int y) {
+	this->y = y;
+}
+
+Ninhos::~Ninhos() {
 
 }

@@ -4,33 +4,27 @@
 #include <string>
 #include <windows.h>
 
-#include "Consola.h"
-
-//Quando tiverem prontas incluir a classe Formigas, Comunidade e Ninhos
 
 using namespace std;
 
-class mundo {
-	char cenas;
+class Ninhos;
+class Formiga;
+
+class Mundo {
+
+	Ninhos* ni;
+	Formiga* form;
 	
-	//ninho* ni;
-	//formigas* form;
-	//comunidade* com;
 public:
-	mundo();
+	Mundo();
 
-	int getCenas() { return cenas; }
-	void setCenas(char c);
+	Ninhos* getNinho() {return ni;}
+	Formiga* getFormiga() {return form;}
 
-	//comunidade* getComunidade() {return com;}
-	//ninho* getNinho() {return ni;}
-	//formiga* getFormiga() {return form;}
+	void setNinho(Ninhos* ni);
+	void setFormiga(Formiga* form);
 
-	//void setNinho(ninho* ni);
-	//void setFormiga(formigas* form);
-	//void setComunidade(comunidade* com);
-
-	~mundo();
+	~Mundo();
 
 	
 };

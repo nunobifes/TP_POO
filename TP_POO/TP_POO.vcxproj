@@ -23,7 +23,7 @@
     <ProjectGuid>{FAE96616-8E95-4BC5-9193-D84AF3B85064}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>TP_POO</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -150,7 +150,6 @@
     <ClInclude Include="Comunidades.h" />
     <ClInclude Include="Consola.h" />
     <ClInclude Include="Formiga.h" />
-    <ClInclude Include="Migalha.h" />
     <ClInclude Include="Mundo.h" />
     <ClInclude Include="Ninhos.h" />
     <ClInclude Include="Screen.h" />
@@ -159,10 +158,10 @@
     <ClCompile Include="Comunidades.cpp" />
     <ClCompile Include="Consola.cpp" />
     <ClCompile Include="Formiga.cpp" />
-    <ClCompile Include="Migalhas.cpp" />
     <ClCompile Include="Mundo.cpp" />
     <ClCompile Include="Ninhos.cpp" />
     <ClCompile Include="principal.cpp" />
+    <ClCompile Include="Screen.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

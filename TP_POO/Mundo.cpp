@@ -1,19 +1,19 @@
 #include "Mundo.h"
 
+//using namespace std;
 
-using namespace std;
-
-mundo::mundo() {
+Mundo::Mundo() {
 
 }
 
-
-//Falta implementar os set's que "vem" das outras classes
-
-void mundo::setCenas(char c) {
-	this -> cenas=c;
+void Mundo::setNinho(Ninhos* n) {
+	this->ni = n;			
 }
 
-mundo::~mundo() {
+void Mundo::setFormiga(Formiga* f) {
+	this->form = f;
+}
+
+Mundo::~Mundo() {
 
 }

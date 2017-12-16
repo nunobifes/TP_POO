@@ -5,33 +5,37 @@
 #include <windows.h>
 #include <vector>
 
-#include "Formiga.h"
-
 using namespace std;
 
-class ninho {
-	char id;						// Atraves do id do ninho a formiga sabe a que ninho pertence....
-	int energia;
-	int linha = 0, coluna = 0;
+class Formiga;
 
-	//vector< formiga* > v;
+class Ninhos {
+	int id;						// Atraves do id do ninho a formiga sabe a que ninho pertence....
+	int energia;
+	int x, y;
+	
 
 public:
 
-	ninho(int id, int e)
-		:id(id), energia(e){}
+	Ninhos(int id, int e, int x, int y)
+		:id(id), energia(e), x(x), y(y){}			
 
-	char getId() const { return id; }
+	int getId() const { return id; }
 	int getEnergia() const { return energia; }
+	int getPosX() { return x; }
+	int getPosY() { return y; }
 
-	void setId(char i);
+	void setId(int i);
 	void setEnergia(int e);
-	void setCoord(int l, int c);
+	//void setCoord(int l, int c);
+
+	void setPosX(int x);
+	void setPosY(int y);
 	
 
-	//void ligaNinho(ninho *a) { p = a; }
+	void insereNinho(Formiga *fr);
 
-	~ninho();
+	~Ninhos();
 
 
 
