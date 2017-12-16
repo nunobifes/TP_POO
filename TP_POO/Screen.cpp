@@ -122,16 +122,16 @@ void margens() {
 
 
 void intro() {
-	Consola::setTextColor(Consola::VERDE);
+	Consola::setTextColor(Consola::VERMELHO);
 	Consola::gotoxy(22, 2); cout << "      :::::::::: ::::::::  :::::::::    :::   :::   ::::::::::: ::::::::      :::      :::::::: ";
 	Consola::gotoxy(22, 3); cout << "     :+:       :+:    :+: :+:    :+:  :+:+: :+:+:      :+:    :+:    :+:   :+: :+:   :+:    :+: ";
-	Consola::setTextColor(Consola::AMARELO);
+	//Consola::setTextColor(Consola::AMARELO);
 	Consola::gotoxy(22, 4); cout << "    +:+       +:+    +:+ +:+    +:+ +:+ +:+:+ +:+     +:+    +:+         +:+   +:+  +:+         ";
 	Consola::gotoxy(22, 5); cout << "   :#::+::#  +#+    +:+ +#++:++#:  +#+  +:+  +#+     +#+    :#:        +#++:++#++: +#++:++#++   ";
-	Consola::setTextColor(Consola::AZUL);
+	//Consola::setTextColor(Consola::AZUL);
 	Consola::gotoxy(22, 6); cout << "  +#+       +#+    +#+ +#+    +#+ +#+       +#+     +#+    +#+   +#+# +#+     +#+        +#+    ";
 	Consola::gotoxy(22, 7); cout << " #+#       #+#    #+# #+#    #+# #+#       #+#     #+#    #+#    #+# #+#     #+# #+#    #+#     ";
-	Consola::setTextColor(Consola::VERMELHO);
+	//Consola::setTextColor(Consola::VERMELHO);
 	Consola::gotoxy(22, 8); cout << "###        ########  ###    ### ###       ### ########### ########  ###     ###  ########       ";
 	
 	for (int a = 1; a < 139; a++) {
@@ -179,16 +179,16 @@ void intro() {
 };
 
 void intro_sim() {
-	Consola::setTextColor(Consola::VERDE);
+	Consola::setTextColor(Consola::VERMELHO);
 	Consola::gotoxy(22, 2); cout << "      :::::::::: ::::::::  :::::::::    :::   :::   ::::::::::: ::::::::      :::      :::::::: ";
 	Consola::gotoxy(22, 3); cout << "     :+:       :+:    :+: :+:    :+:  :+:+: :+:+:      :+:    :+:    :+:   :+: :+:   :+:    :+: ";
-	Consola::setTextColor(Consola::AMARELO);
+	//Consola::setTextColor(Consola::AMARELO);
 	Consola::gotoxy(22, 4); cout << "    +:+       +:+    +:+ +:+    +:+ +:+ +:+:+ +:+     +:+    +:+         +:+   +:+  +:+         ";
 	Consola::gotoxy(22, 5); cout << "   :#::+::#  +#+    +:+ +#++:++#:  +#+  +:+  +#+     +#+    :#:        +#++:++#++: +#++:++#++   ";
-	Consola::setTextColor(Consola::AZUL);
+	//Consola::setTextColor(Consola::AZUL);
 	Consola::gotoxy(22, 6); cout << "  +#+       +#+    +#+ +#+    +#+ +#+       +#+     +#+    +#+   +#+# +#+     +#+        +#+    ";
 	Consola::gotoxy(22, 7); cout << " #+#       #+#    #+# #+#    #+# #+#       #+#     #+#    #+#    #+# #+#     #+# #+#    #+#     ";
-	Consola::setTextColor(Consola::VERMELHO);
+	//Consola::setTextColor(Consola::VERMELHO);
 	Consola::gotoxy(22, 8); cout << "###        ########  ###    ### ###       ### ########### ########  ###     ###  ########       ";
 
 	for (int a = 1; a < 139; a++) {

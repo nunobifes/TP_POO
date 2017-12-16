@@ -74,6 +74,12 @@ int main()
 					}
 				}
 				flag_energia = 1;
+				Consola::setTextColor(Consola::VERDE);
+				Consola::gotoxy(2, 13);
+				cout << "Energia definida para cada ninho: ";
+				Consola::setTextColor(Consola::AZUL_CLARO);
+				cout << energia << endl;
+				Consola::setTextColor(Consola::BRANCO);
 				break;
 
 
@@ -91,7 +97,7 @@ int main()
 						Consola::gotoxy(2, 13);
 						cout << "ERRO!" << endl;
 						Consola::setTextColor(Consola::BRANCO);
-						cout << "  Não se pode começar a jogar sem: " << endl;
+						cout << "  Nao se pode comecar a jogar sem: " << endl;
 						if(flag_dim == 0)
 							cout << "   -Defenir o tamanho do mapa;" << endl;
 						if (flag_energia == 0)
