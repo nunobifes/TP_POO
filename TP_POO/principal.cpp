@@ -125,48 +125,53 @@ int main()
 						Consola::gotoxy(2, 14);
 						cout << "Consegui abrir!" << endl;
 					}
-
-					getline(dados, linha);
+					
 					// linha 1 (defmundo)
+					getline(dados, linha);
 					istringstream tam(linha);
 					tam >> linhas >> colunas;
 					Consola::gotoxy(2, 17);
 					flag_dim = 1;
 					cout << "defmundo " << linhas << " " << colunas << endl;
 					
-					getline(dados, linha);
 					// linha 2 (defen)
+					getline(dados, linha);
 					istringstream mod(linha);
 					mod >> energia;
+					if (ninhos.size() != 0) {
+						for (auto i = ninhos.begin(); i != ninhos.end(); i++) {
+							(*i)->setEnergia(energia);
+						}
+					}
 					flag_energia = 1;
 					cout << "  defen " << energia << endl;
 					
-					getline(dados, linha);
 					// linha 3 (defpc)
+					getline(dados, linha);
 					istringstream moda(linha);
 					moda >> energia_i;
 					cout << "  defpc " << energia_i << endl;
 					
-					getline(dados, linha);
 					// linha 4 (defvt)
+					getline(dados, linha);
 					istringstream modb(linha);
 					modb >> energia_t;
 					cout << "  defvt " << energia_t << endl;
 					
-					getline(dados, linha);
 					// linha 5 (defmi)
+					getline(dados, linha);
 					istringstream modc(linha);
 					modc >> pos_miga;
 					cout << "  defmi " << pos_miga << endl;
 					
-					getline(dados, linha);
 					// linha 6 (defme)
+					getline(dados, linha);
 					istringstream modd(linha);
 					modd >> energia_miga;
 					cout << "  defme " << energia_miga << endl;
 					
-					getline(dados, linha);
 					// linha 7 (defnm)
+					getline(dados, linha);
 					istringstream mode(linha);
 					mode >> max_miga;
 					cout << "  defnm " << max_miga << endl;	
