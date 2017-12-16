@@ -1,6 +1,4 @@
 #include "Comunidades.h"
-#include "Formiga.h"
-#include "Ninhos.h"
 
 //Cada comunidade, possui o seu próprio ninho
 

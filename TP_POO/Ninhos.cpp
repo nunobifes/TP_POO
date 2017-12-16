@@ -3,7 +3,6 @@
 
 
 #include "Ninhos.h"
-#include "Formiga.h"
 
 
 void Ninhos::setId(int i) {

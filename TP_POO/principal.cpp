@@ -3,9 +3,7 @@
 #include "Screen.h"
 #include "Mundo.h"
 #include "Screen.h"
-#include "Formiga.h"
 #include "Comunidades.h"
-#include "Ninhos.h"
 #include <fstream>
 
 using namespace std;
@@ -14,8 +12,8 @@ using namespace std;
 int main()
 {
 	int flag_energia = 0, flag_dim = 0, ready = 0;
-	int op, linha = 0, coluna = 0;// , energia = 0, l_inicial = 0, c_inicial = 0;
-	int linhas = 0, colunas = 0, energia = 0, energia_i = 0, energia_t = 0, pos_miga = 0, energia_miga = 0, max_miga = 0;
+	
+	int op, linhas = 0, energia = 0, energia_i = 0, energia_t = 0, pos_miga = 0, energia_miga = 0, max_miga = 0;
 	vector <Ninhos *> ninhos;
 	string comando;
 	Mundo** campo = nullptr;
@@ -28,7 +26,7 @@ int main()
 		margens();
 		intro();
 		Consola::gotoxy(2, 47);
-		cout << "Comando: ";
+		cout << "Comando de configuracao: ";
 		getline(cin, comando);
 		Consola::clrscr();
 		istringstream iss(comando);
@@ -36,25 +34,25 @@ int main()
 
 		op=cmd_op(comando);
 		switch (op) {
-			case 1: {
+			case 1: { // defmundo
 				Consola::clrscr();
-				iss >> linha;
-				iss >> coluna;
+				iss >> linhas;
+				
 
-				if (linha < 10 || coluna < 10) {
+				if (linhas < 10) {
 					Consola::setTextColor(Consola::VERMELHO_CLARO);
 					Consola::gotoxy(45, 35);
 					cout << "[ERRO] - Mapa demasiado pequeno!!" << endl;
 					Consola::setTextColor(Consola::BRANCO);
-					linha = 0; coluna = 0;
+					linhas = 0;
 					int o = 0;
 					break;
 				}
 				else {
-					campo = new Mundo*[linha];
-					for (int i = 0; i <= linha; i++) {
-						campo[i] = new Mundo[coluna];
-						for (int j = 0; j <= coluna; j++) {
+					campo = new Mundo*[linhas];
+					for (int i = 0; i <= linhas; i++) {
+						campo[i] = new Mundo[linhas];
+						for (int j = 0; j <= linhas; j++) {
 							//campo[i][j].setOcupante(' ');
 							//campo[i][j].setNinho(nullptr);
 							//campo[i][j].setFormigas(nullptr);
@@ -67,7 +65,7 @@ int main()
 				flag_dim = 1;
 				break;
 			}
-			case 2:
+			case 2: // defen
 				//Definir a energia...
 				iss >> energia;
 				if(ninhos.size() != 0){
@@ -79,15 +77,15 @@ int main()
 				break;
 
 
-			case 3:
+			case 3: // defpc
 				break;
-			case 4:
+			case 4: // defmi
 				break;
-			case 5:
+			case 5: // defme
 				break;
-			case 6:
+			case 6: //defnm
 				break;
-			case 7:{
+			case 7:{ // inicio
 					if(flag_dim == 0 || flag_energia == 0/* || */){
 						Consola::setTextColor(Consola::VERMELHO);
 						Consola::gotoxy(2, 13);
@@ -103,7 +101,7 @@ int main()
 					}
 				}
 				break;
-			case 8: {
+			case 8: { // executa
 				//int linhas, colunas, energia, energia_i, energia_t, pos_miga, energia_miga, max_miga;
 					string nomeFicheiro;
 					iss >> nomeFicheiro;
@@ -129,10 +127,10 @@ int main()
 					// linha 1 (defmundo)
 					getline(dados, linha);
 					istringstream tam(linha);
-					tam >> linhas >> colunas;
+					tam >> linhas;
 					Consola::gotoxy(2, 17);
 					flag_dim = 1;
-					cout << "defmundo " << linhas << " " << colunas << endl;
+					cout << "defmundo " << linhas << endl;
 					
 					// linha 2 (defen)
 					getline(dados, linha);
@@ -177,19 +175,11 @@ int main()
 					cout << "  defnm " << max_miga << endl;	
 				}
 				break;
-			case 9:
-				//começa o jogo
-				ready = true;
-				//Consola::gotoxy(getPosX, getPosY);			//Ninhos
-				//Consola::gotoxy(getPosX, getPosY);			// Formigas
-				break;
-			case 10:
+			case 9: // limpar
 				Consola::clrscr();
 				break;
-			case 11:
+			case 10: // sair
 				return 0;
-			case 12:
-				break;
 			default:
 				Consola::setTextColor(Consola::VERMELHO);
 				Consola::gotoxy(2, 13);
@@ -202,9 +192,81 @@ int main()
 		
 	} while (ready != 1);
 	
-	string xau;
-	cout << "xau" << endl;
-	cin >> xau;
+	while(1){
+		ready = 0;
+		while(ready != 1){
+			margens();
+			intro_sim();
+			Consola::gotoxy(2, 47);
+			cout << "Comando de simulacao: ";
+			getline(cin, comando);
+			Consola::clrscr();
+			istringstream iss(comando);
+			iss >> comando;
+
+			op = cmd_sim_op(comando);
+			switch(op){
+
+			case 1: // ninho <linha> <coluna>
+				break;
+
+			case 2: // criaf <F> <T> <N>
+				break;
+
+			case 3: // cria1 <T> <N> <linha> <coluna>
+				break;
+
+			case 4: // migalha <linha> <coluna>
+				break;
+
+			case 5: // foca <linha> <coluna>
+				break;
+
+			case 6: // tempo || tempo <N>
+				break;
+
+			case 7: // energninho <N> <E>
+				break;
+
+			case 8: // energformiga <linha> <coluna> <E>
+				break;
+
+			case 9: // mata <linha> <coluna>
+				break;
+
+			case 10: // inseticida <N>
+				break;
+
+			case 11: // listamundo
+				break;
+
+			case 12: // listaninho <N>
+				break;
+
+			case 13: // listaposicao <linha>  <coluna>
+				break;
+
+			case 14: // guarda <nome>
+				break;
+
+			case 15: // muda <nome>
+				break;
+
+			case 16: // apaga <nome>
+				break;
+
+			case 17: // sair
+				return 0;
+
+			default:
+				Consola::setTextColor(Consola::VERMELHO);
+				Consola::gotoxy(2, 13);
+				cout << "Comando invalido!" << endl;
+				Consola::setTextColor(Consola::BRANCO);
+				break;
+			}
+		}
+	}
 
 	return 0;
 

@@ -5,6 +5,8 @@
 #include <windows.h>
 #include <vector>
 
+#include "Formiga.h"
+
 using namespace std;
 
 class Formiga;

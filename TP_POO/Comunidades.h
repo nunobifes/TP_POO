@@ -5,6 +5,8 @@
 #include <windows.h>
 #include <vector>
 
+#include "Ninhos.h"
+
 class Ninhos;
 class Formiga;
 
