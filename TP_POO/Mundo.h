@@ -1,33 +1,58 @@
+#ifndef __MUNDO__
+#define __MUNDO__
+
 #include <cstdlib>
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <vector>
 #include <windows.h>
 
+#include "Comunidade.h"
+#include "Migalha.h"
 
-using namespace std;
-
-class Ninhos;
-class Formiga;
+class Comunidade;
 
 class Mundo {
 
-	Ninhos* ni;
-	Formiga* form;
 	
+	vector <Comunidade*> co;
+	vector <Migalha*> mig;
+	int lim_max;
+	int energia_ninho;
+	int perc_energia;
+	int energia_transf;
+	int ninho_x, ninho_y;
+	int m_e_inicial;
+	int m_per_inicial;
+	int m_max;
+
 public:
-	Mundo();
+	Mundo(int l, int et);
 
-	Ninhos* getNinho() {return ni;}
-	Formiga* getFormiga() {return form;}
+	void setLim(int l);
+	void set_energ_ninho(int e);
+	void set_perc_energ(int pe);
+	void set_energ_transf(int et);
+	void set_ninho_xy(int x, int y);
+	void set_m_e_inical(int me);
+	void set_m_per_inicial(int mpe);
+	void set_m_max(int mm);
+	
+	int get_energia_ninho() const;
+	int get_posx_ninho() const;
+	int get_posy_ninho() const;
+	int get_lim() const;
+	vector<Comunidade*> get_comunidade() const;
+	vector<Migalha*> get_migalha() const;
+	int get_m_e_inical() const;
+	int get_m_per_inicial() const;
+	int get_m_max() const;
 
-	void setNinho(Ninhos* ni);
-	void setFormiga(Formiga* form);
+	void cria_comunidade();
+	void cria_migalha();
 
 	~Mundo();
-
-	
 };
 
-
-
+#endif

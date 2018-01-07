@@ -13,48 +13,120 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Interface">
+      <UniqueIdentifier>{67912041-80e1-472d-a78e-139e40d7943b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Aplicação">
+      <UniqueIdentifier>{3d798a7c-a57b-4d02-8cf3-f8ca172af6f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Interface">
+      <UniqueIdentifier>{13a3e38b-77a0-42f9-9c3b-c885b92d9196}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Aplicação">
+      <UniqueIdentifier>{d572b959-5bde-4b1f-8390-84441834ea37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Aplicação\Tipo_Formiga">
+      <UniqueIdentifier>{c13b1c5f-2a03-4982-9421-1598568b0db5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Aplicação\Tipo_Formiga">
+      <UniqueIdentifier>{56ec022e-b5ae-4fd8-b501-d1d96eb7f638}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Consola.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Formiga.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Ninhos.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Comunidades.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mundo.h">
+    <ClInclude Include="Gestor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Screen.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Comunidade.h">
+      <Filter>Header Files\Aplicação</Filter>
+    </ClInclude>
+    <ClInclude Include="Formiga.h">
+      <Filter>Header Files\Aplicação</Filter>
+    </ClInclude>
+    <ClInclude Include="Migalha.h">
+      <Filter>Header Files\Aplicação</Filter>
+    </ClInclude>
+    <ClInclude Include="Mundo.h">
+      <Filter>Header Files\Aplicação</Filter>
+    </ClInclude>
+    <ClInclude Include="Ninho.h">
+      <Filter>Header Files\Aplicação</Filter>
+    </ClInclude>
+    <ClInclude Include="Consola.h">
+      <Filter>Header Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Comandos.h">
+      <Filter>Header Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Regra.h">
+      <Filter>Header Files\Aplicação</Filter>
+    </ClInclude>
+    <ClInclude Include="Cuidadora.h">
+      <Filter>Header Files\Aplicação\Tipo_Formiga</Filter>
+    </ClInclude>
+    <ClInclude Include="Vigilante.h">
+      <Filter>Header Files\Aplicação\Tipo_Formiga</Filter>
+    </ClInclude>
+    <ClInclude Include="Assaltante.h">
+      <Filter>Header Files\Aplicação\Tipo_Formiga</Filter>
+    </ClInclude>
+    <ClInclude Include="Exploradora.h">
+      <Filter>Header Files\Aplicação\Tipo_Formiga</Filter>
+    </ClInclude>
+    <ClInclude Include="Surpresa.h">
+      <Filter>Header Files\Aplicação\Tipo_Formiga</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Consola.cpp">
+    <ClCompile Include="Principal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="principal.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Formiga.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Ninhos.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Comunidades.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Mundo.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Comandos.cpp">
+      <Filter>Source Files\Interface</Filter>
     </ClCompile>
     <ClCompile Include="Screen.cpp">
+      <Filter>Source Files\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Comunidade.cpp">
+      <Filter>Source Files\Aplicação</Filter>
+    </ClCompile>
+    <ClCompile Include="Formiga.cpp">
+      <Filter>Source Files\Aplicação</Filter>
+    </ClCompile>
+    <ClCompile Include="Migalha.cpp">
+      <Filter>Source Files\Aplicação</Filter>
+    </ClCompile>
+    <ClCompile Include="Ninho.cpp">
+      <Filter>Source Files\Aplicação</Filter>
+    </ClCompile>
+    <ClCompile Include="Mundo.cpp">
+      <Filter>Source Files\Aplicação</Filter>
+    </ClCompile>
+    <ClCompile Include="Consola.cpp">
+      <Filter>Source Files\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Gestor.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Regra.cpp">
+      <Filter>Source Files\Aplicação</Filter>
+    </ClCompile>
+    <ClCompile Include="Cuidadora.cpp">
+      <Filter>Source Files\Aplicação\Tipo_Formiga</Filter>
+    </ClCompile>
+    <ClCompile Include="Vigilante.cpp">
+      <Filter>Source Files\Aplicação\Tipo_Formiga</Filter>
+    </ClCompile>
+    <ClCompile Include="Assaltante.cpp">
+      <Filter>Source Files\Aplicação\Tipo_Formiga</Filter>
+    </ClCompile>
+    <ClCompile Include="Exploradora.cpp">
+      <Filter>Source Files\Aplicação\Tipo_Formiga</Filter>
+    </ClCompile>
+    <ClCompile Include="Surpresa.cpp">
+      <Filter>Source Files\Aplicação\Tipo_Formiga</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

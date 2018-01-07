@@ -8,33 +8,36 @@
 #include "Screen.h"
 #include "Consola.h"
 #include "Mundo.h"
+#include "Gestor.h"
 
-int cmd_op(string s) {
+int Screen::cmd_op(string s) {
 	int op = 0;
 	if (!s.compare("defmundo"))
 		op = 1;
-	else if (!s.compare("defen"))			//funciona como o introduzir o numero de moedas no tp ano passado
+	else if (!s.compare("defen"))		
 		op = 2;
 	else if (!s.compare("defpc"))
 		op = 3;
-	else if (!s.compare("defmi"))
+	else if (!s.compare("defpc"))
 		op = 4;
-	else if (!s.compare("defme"))
+	else if (!s.compare("defmi"))
 		op = 5;
-	else if (!s.compare("defnm"))
+	else if (!s.compare("defme"))
 		op = 6;
-	else if (!s.compare("inicio"))
+	else if (!s.compare("defnm"))
 		op = 7;
-	else if (!s.compare("executa"))
+	else if (!s.compare("inicio"))
 		op = 8;
-	else if (!s.compare("limpar"))
+	else if (!s.compare("executa"))
 		op = 9;
-	else if (!s.compare("sair"))
+	else if (!s.compare("limpar"))
 		op = 10;
+	else if (!s.compare("sair"))
+		op = 11;
 	return op;
 }
 
-int cmd_sim_op(string s) {
+int Screen::cmd_sim_op(string s) {
 	int op = 0;
 	if (!s.compare("ninho"))
 		op = 1;
@@ -73,14 +76,14 @@ int cmd_sim_op(string s) {
 	return op;
 }
 
-void mostra_mapa(int linha, int coluna, Mundo **campo) {
+void Screen::mostra_mapa() {
 
-	Consola::clrscr();
+	//Consola::clrscr();
 
-	for (int y = 10; y < 30; y++) {
-		for (int x = 40; x < 100; x++) {
+	for (int y = 17; y < 39; y++) {
+		for (int x = 58; x < 80; x++) {
 			Consola::gotoxy(x, y);
-			if (x == 40 || y == 10 || x == 99 || y == 29)
+			if (x == 58 || y == 17 || x == 79 || y == 38)
 			{
 
 				Consola::setBackgroundColor(Consola::BRANCO_CLARO);
@@ -89,7 +92,7 @@ void mostra_mapa(int linha, int coluna, Mundo **campo) {
 
 			else
 			{
-				Consola::setBackgroundColor(Consola::VERMELHO_CLARO);
+				Consola::setBackgroundColor(Consola::VERDE_CLARO);
 				cout << ' ';
 			}
 		}
@@ -97,11 +100,75 @@ void mostra_mapa(int linha, int coluna, Mundo **campo) {
 	Consola::setBackgroundColor(Consola::PRETO);
 
 
-
-
-
 }
-void margens() {
+
+void Screen::desenha(Mundo* m)
+{	
+	
+	if (m->get_comunidade().size() != 0)
+	{
+		int xn, yn, xf, yf;
+		Consola::setBackgroundColor(Consola::VERDE_CLARO);
+		for (auto i = 0; i < m->get_comunidade().size(); i++)
+		{
+			// NINHOS
+			Comunidade *comu = m->get_comunidade().at(i);
+			xn = comu->get_ninho()->getPosX();
+			yn = comu->get_ninho()->getPosY();
+			if (xn > 58 && xn < 80 && yn > 17 && yn < 39) {
+				Consola::gotoxy(xn, yn);
+				Consola::setTextColor(Consola::AZUL);
+				cout << "N";
+				Consola::setTextColor(Consola::BRANCO);
+			}
+
+			//FORMIGAS
+			for(auto j = 0; j < comu->get_formiga().size(); j++)
+			{
+				Formiga* form = comu->get_formiga().at(j);
+				xf = form->get_posX();
+				yf = form->get_posY();
+				if (xf > 58 && xf < 80 && yf > 17 && yf < 39) {
+					Consola::gotoxy(xf, yf);
+					
+					Consola::setTextColor(form->get_cor());
+					cout << 'f';
+					Consola::setTextColor(Consola::BRANCO);
+				}
+			}
+		}
+	}
+
+	int x, y;
+	Consola::setBackgroundColor(Consola::VERDE_CLARO);
+	for(auto i = 0; i < m->get_migalha().size(); i++)
+	{
+		Migalha* migalha = m->get_migalha().at(i);
+		x = migalha->get_posx();
+		y = migalha->get_posy();
+		if (x > 58 && x < 80 && y > 17 && y < 39) {
+			Consola::gotoxy(x, y);
+			Consola::setTextColor(Consola::AMARELO);
+			cout << "*";
+			Consola::setTextColor(Consola::BRANCO);
+		}
+	}
+	Consola::setBackgroundColor(Consola::PRETO);
+}
+
+
+void Screen::margens() {
+
+	Consola::setTextColor(Consola::VERMELHO);
+	Consola::gotoxy(22, 2); cout << "      :::::::::: ::::::::  :::::::::    :::   :::   ::::::::::: ::::::::      :::      :::::::: ";
+	Consola::gotoxy(22, 3); cout << "     :+:       :+:    :+: :+:    :+:  :+:+: :+:+:      :+:    :+:    :+:   :+: :+:   :+:    :+: ";
+	Consola::gotoxy(22, 4); cout << "    +:+       +:+    +:+ +:+    +:+ +:+ +:+:+ +:+     +:+    +:+         +:+   +:+  +:+         ";
+	Consola::gotoxy(22, 5); cout << "   :#::+::#  +#+    +:+ +#++:++#:  +#+  +:+  +#+     +#+    :#:        +#++:++#++: +#++:++#++   ";
+	Consola::gotoxy(22, 6); cout << "  +#+       +#+    +#+ +#+    +#+ +#+       +#+     +#+    +#+   +#+# +#+     +#+        +#+    ";
+	Consola::gotoxy(22, 7); cout << " #+#       #+#    #+# #+#    #+# #+#       #+#     #+#    #+#    #+# #+#     #+# #+#    #+#     ";
+	Consola::gotoxy(22, 8); cout << "###        ########  ###    ### ###       ### ########### ########  ###     ###  ########       ";
+
+
 	Consola::setTextColor(Consola::CINZENTO);
 	for (int a = 0; a < 140; a++) {
 		Consola::gotoxy(a, 0);
@@ -121,18 +188,7 @@ void margens() {
 
 
 
-void intro() {
-	Consola::setTextColor(Consola::VERMELHO);
-	Consola::gotoxy(22, 2); cout << "      :::::::::: ::::::::  :::::::::    :::   :::   ::::::::::: ::::::::      :::      :::::::: ";
-	Consola::gotoxy(22, 3); cout << "     :+:       :+:    :+: :+:    :+:  :+:+: :+:+:      :+:    :+:    :+:   :+: :+:   :+:    :+: ";
-	//Consola::setTextColor(Consola::AMARELO);
-	Consola::gotoxy(22, 4); cout << "    +:+       +:+    +:+ +:+    +:+ +:+ +:+:+ +:+     +:+    +:+         +:+   +:+  +:+         ";
-	Consola::gotoxy(22, 5); cout << "   :#::+::#  +#+    +:+ +#++:++#:  +#+  +:+  +#+     +#+    :#:        +#++:++#++: +#++:++#++   ";
-	//Consola::setTextColor(Consola::AZUL);
-	Consola::gotoxy(22, 6); cout << "  +#+       +#+    +#+ +#+    +#+ +#+       +#+     +#+    +#+   +#+# +#+     +#+        +#+    ";
-	Consola::gotoxy(22, 7); cout << " #+#       #+#    #+# #+#    #+# #+#       #+#     #+#    #+#    #+# #+#     #+# #+#    #+#     ";
-	//Consola::setTextColor(Consola::VERMELHO);
-	Consola::gotoxy(22, 8); cout << "###        ########  ###    ### ###       ### ########### ########  ###     ###  ########       ";
+void Screen::intro() {
 	
 	for (int a = 1; a < 139; a++) {
 		Consola::setTextColor(Consola::CINZENTO);
@@ -144,23 +200,24 @@ void intro() {
 	Consola::gotoxy(120, 27);	cout << " -defmundo";
 	Consola::gotoxy(120, 28);	cout << " -defen ";
 	Consola::gotoxy(120, 29);	cout << " -defpc";
-	Consola::gotoxy(120, 30);	cout << " -defmi";
-	Consola::gotoxy(120, 31);	cout << " -defme";
-	Consola::gotoxy(120, 32);	cout << " -defnm";
-	Consola::gotoxy(120, 33);	cout << " -inicio";
-	Consola::gotoxy(120, 34);	cout << " -executa";
-	Consola::gotoxy(120, 35);	cout << " -limpar";
-	Consola::gotoxy(120, 36);	cout << " -sair";
+	Consola::gotoxy(120, 30);	cout << " -defvt";
+	Consola::gotoxy(120, 31);	cout << " -defmi";
+	Consola::gotoxy(120, 32);	cout << " -defme";
+	Consola::gotoxy(120, 33);	cout << " -defnm";
+	Consola::gotoxy(120, 34);	cout << " -inicio";
+	Consola::gotoxy(120, 35);	cout << " -executa";
+	Consola::gotoxy(120, 36);	cout << " -limpar";
+	Consola::gotoxy(120, 37);	cout << " -sair";
 
 
 	Consola::setTextColor(Consola::BRANCO);
 	for (int a = 118; a < 136; a++) {
 		Consola::gotoxy(a, 25);
 		cout << (char)205;
-		Consola::gotoxy(a, 37);
+		Consola::gotoxy(a, 38);
 		cout << (char)205;
 	}
-	for (int a = 26; a < 37; a++) {
+	for (int a = 26; a < 38; a++) {
 		Consola::gotoxy(118, a);
 		cout << (char)186;
 		Consola::gotoxy(135, a);
@@ -171,26 +228,15 @@ void intro() {
 	cout << (char)201;
 	Consola::gotoxy(135, 25);
 	cout << (char)187;
-	Consola::gotoxy(118, 37);
+	Consola::gotoxy(118, 38);
 	cout << (char)200;
-	Consola::gotoxy(135, 37);
+	Consola::gotoxy(135, 38);
 	cout << (char)188;
 
 };
 
-void intro_sim() {
-	Consola::setTextColor(Consola::VERMELHO);
-	Consola::gotoxy(22, 2); cout << "      :::::::::: ::::::::  :::::::::    :::   :::   ::::::::::: ::::::::      :::      :::::::: ";
-	Consola::gotoxy(22, 3); cout << "     :+:       :+:    :+: :+:    :+:  :+:+: :+:+:      :+:    :+:    :+:   :+: :+:   :+:    :+: ";
-	//Consola::setTextColor(Consola::AMARELO);
-	Consola::gotoxy(22, 4); cout << "    +:+       +:+    +:+ +:+    +:+ +:+ +:+:+ +:+     +:+    +:+         +:+   +:+  +:+         ";
-	Consola::gotoxy(22, 5); cout << "   :#::+::#  +#+    +:+ +#++:++#:  +#+  +:+  +#+     +#+    :#:        +#++:++#++: +#++:++#++   ";
-	//Consola::setTextColor(Consola::AZUL);
-	Consola::gotoxy(22, 6); cout << "  +#+       +#+    +#+ +#+    +#+ +#+       +#+     +#+    +#+   +#+# +#+     +#+        +#+    ";
-	Consola::gotoxy(22, 7); cout << " #+#       #+#    #+# #+#    #+# #+#       #+#     #+#    #+#    #+# #+#     #+# #+#    #+#     ";
-	//Consola::setTextColor(Consola::VERMELHO);
-	Consola::gotoxy(22, 8); cout << "###        ########  ###    ### ###       ### ########### ########  ###     ###  ########       ";
-
+void Screen::intro_sim() {
+	
 	for (int a = 1; a < 139; a++) {
 		Consola::setTextColor(Consola::CINZENTO);
 		Consola::gotoxy(a, 10);
@@ -239,5 +285,7 @@ void intro_sim() {
 	cout << (char)200;
 	Consola::gotoxy(135, 44);
 	cout << (char)188;
+
+
 
 };

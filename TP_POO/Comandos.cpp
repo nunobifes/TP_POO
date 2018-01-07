@@ -1,0 +1,395 @@
+#include <cstdlib>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <windows.h>
+#include <fstream>
+
+#include "Gestor.h"
+#include "Screen.h"
+#include "Consola.h"
+#include "Mundo.h"
+
+using namespace std;
+
+int flagEnerg = 0, flagTam = 0, flagPerc = 0, flagMEnerg = 0, flagMPerc = 0, flagMMax = 0;
+char t;
+int op, linhas = 0, energia = 0, energia_perc = 0, energia_transf = 0, per_miga = 0, energia_miga = 0, max_miga = 0, linha= 0, coluna= 0, n=0;
+string comando;
+
+
+
+bool Comandos::menu_config(Mundo* m, Screen* s)const {
+
+	// "Menu" inicial de configuração 
+	
+
+	Consola::gotoxy(2, 47);
+	cout << "Comando de configuracao: ";
+	getline(cin, comando);
+	Consola::clrscr();
+	istringstream iss(comando);
+	iss >> comando;
+
+	op = s->cmd_op(comando);
+	switch (op) {
+	case 1: { // defmundo
+		Consola::clrscr();
+		iss >> linhas;
+
+
+		if (linhas < 10) {
+			Consola::setTextColor(Consola::VERMELHO_CLARO);
+			Consola::gotoxy(45, 35);
+			cout << "[ERRO] - Mapa demasiado pequeno!!" << endl;
+			Consola::setTextColor(Consola::BRANCO);
+			linhas = 0;
+			int o = 0;
+			break;
+		}
+
+		m->setLim(linhas);
+		flagTam = 1;
+		Consola::setTextColor(Consola::VERDE);
+		Consola::gotoxy(2, 13);
+		cout << "Tamanho definido para para o mapa: ";
+		Consola::setTextColor(Consola::AZUL_CLARO);
+		cout << linhas << 'x' << linhas << endl;
+		Consola::setTextColor(Consola::BRANCO);
+		break;
+	}
+	case 2: // defen
+			//Definir a energia...
+		iss >> energia;
+		m->set_energ_ninho(energia);
+		flagEnerg = 1;
+
+		Consola::setTextColor(Consola::VERDE);
+		Consola::gotoxy(2, 13);
+		cout << "Energia definida para cada ninho: ";
+		Consola::setTextColor(Consola::AZUL_CLARO);
+		cout << energia << endl;
+		Consola::setTextColor(Consola::BRANCO);
+
+		break;
+
+
+	case 3: // defpc
+		iss >> energia_perc;
+		m->set_perc_energ(energia_perc);
+		flagPerc = 1;
+
+		Consola::setTextColor(Consola::VERDE);
+		Consola::gotoxy(2, 13);
+		cout << "Percentagem definida para criação de uma formiga: ";
+		Consola::setTextColor(Consola::AZUL_CLARO);
+		cout << energia_perc << '%' << endl;
+		Consola::setTextColor(Consola::BRANCO);
+		break;
+	case 4: // defvt
+		iss >> energia_transf;
+		m->set_energ_transf(energia_transf);
+
+		Consola::setTextColor(Consola::VERDE);
+		Consola::gotoxy(2, 13);
+		cout << "Energia transferida por iteração: ";
+		Consola::setTextColor(Consola::AZUL_CLARO);
+		cout << energia_transf << endl;
+		Consola::setTextColor(Consola::BRANCO);
+		break;
+	case 5: // defmi
+		iss >> per_miga;
+		m->set_m_per_inicial(per_miga);
+		flagMPerc = 1;
+
+		Consola::setTextColor(Consola::VERDE);
+		Consola::gotoxy(2, 13);
+		cout << "Percentagem de migalhas definida para o mundo: ";
+		Consola::setTextColor(Consola::AZUL_CLARO);
+		cout << per_miga << '%' << endl;
+		Consola::setTextColor(Consola::BRANCO);
+		break;
+	case 6: // defme
+		iss >> energia_miga;
+		m->set_m_e_inical(energia_miga);
+		flagMEnerg = 1;
+
+		Consola::setTextColor(Consola::VERDE);
+		Consola::gotoxy(2, 13);
+		cout << "Energia definida para cada migalha: ";
+		Consola::setTextColor(Consola::AZUL_CLARO);
+		cout << energia_miga << endl;
+		Consola::setTextColor(Consola::BRANCO);
+		break;
+	case 7: //defnm
+		iss >> max_miga;
+		m->set_m_max(max_miga);
+		flagMMax = 1;
+
+		Consola::setTextColor(Consola::VERDE);
+		Consola::gotoxy(2, 13);
+		cout << "Numero maximo de migalhas definido para o mundo: ";
+		Consola::setTextColor(Consola::AZUL_CLARO);
+		cout << max_miga << endl;
+		Consola::setTextColor(Consola::BRANCO);
+		break;
+	case 8: { // inicio
+		if (flagTam == 0 || flagEnerg == 0 || flagPerc == 0 || flagMEnerg == 0 || flagMPerc == 0 || flagMMax == 0) {
+			Consola::setTextColor(Consola::VERMELHO);
+			Consola::gotoxy(2, 13);
+			cout << "ERRO!" << endl;
+			Consola::setTextColor(Consola::BRANCO);
+			cout << "  Não se pode começar a jogar sem: " << endl;
+			if (flagTam == 0)
+				cout << "   -Defenir o tamanho do mapa;" << endl;
+			if (flagEnerg == 0)
+				cout << "   -Defenir a energia dos ninhos;" << endl;
+			if (flagPerc == 0)
+				cout << "   -Defenir a percentagem de enrgia para criar nova formiga;" << endl;
+			if (flagMEnerg == 0)
+				cout << "   -Defenir a energia das migalhas;" << endl;
+			if (flagMPerc == 0)
+				cout << "   -Defenir a percentagem de migalhas iniciais a existir;" << endl;
+			if (flagMMax == 0)
+				cout << "   -Defenir a o numero maximo de migalhas a serem criadas por iteracao;" << endl;
+		}
+		else {
+			return true;
+		}
+	}
+			break;
+	case 9: { // executa
+			  //int linhas, colunas, energia, energia_i, energia_t, pos_miga, energia_miga, max_miga;
+		string nomeFicheiro;
+		iss >> nomeFicheiro;
+		Consola::gotoxy(2, 13);
+		cout << "Nome do ficheiro: " << nomeFicheiro << endl;
+		string linha;
+		ifstream dados(nomeFicheiro);
+		if (!dados.is_open())
+		{
+			Consola::setTextColor(Consola::VERMELHO);
+			Consola::gotoxy(2, 14);
+			cout << "ERRO!" << endl;
+			Consola::setTextColor(Consola::BRANCO);
+			cout << "  Nao consegui abrir ficheiro!" << endl;
+			break;
+		}
+		else
+		{
+			Consola::gotoxy(2, 14);
+			cout << "Consegui abrir!" << endl;
+		}
+
+		// linha 1 (defmundo)
+		getline(dados, linha);
+		istringstream tam(linha);
+		tam >> linhas;
+		m->setLim(linhas);
+		Consola::gotoxy(2, 17);
+		flagTam = 1;
+		cout << "defmundo " << linhas << endl;
+
+		// linha 2 (defen)
+		getline(dados, linha);
+		istringstream mod(linha);
+		mod >> energia;
+		m->set_energ_ninho(energia);
+		flagEnerg = 1;
+		cout << "  defen " << energia << endl;
+
+		// linha 3 (defpc)
+		getline(dados, linha);
+		istringstream moda(linha);
+		moda >> energia_perc;
+		m->set_perc_energ(energia_perc);
+		cout << "  defpc " << energia_perc << endl;
+		flagPerc = 1;
+
+		// linha 4 (defvt)
+		getline(dados, linha);
+		istringstream modb(linha);
+		modb >> energia_transf;
+		m->set_energ_transf(energia_transf);
+		cout << "  defvt " << energia_transf << endl;
+		
+		// linha 5 (defmi)
+		getline(dados, linha);
+		istringstream modc(linha);
+		modc >> per_miga;
+		m->set_m_per_inicial(per_miga);
+		cout << "  defmi " << per_miga << endl;
+		flagMPerc = 1;
+
+		// linha 6 (defme)
+		getline(dados, linha);
+		istringstream modd(linha);
+		modd >> energia_miga;
+		m->set_m_e_inical(energia_miga);
+		cout << "  defme " << energia_miga << endl;
+		flagMEnerg = 1;
+
+		// linha 7 (defnm)
+		getline(dados, linha);
+		istringstream mode(linha);
+		mode >> max_miga;
+		m->set_m_max(max_miga);
+		cout << "  defnm " << max_miga << endl;
+		flagMMax = 1;
+	}
+			break;
+	case 10: // limpar
+		Consola::clrscr();
+		break;
+	case 11: // sair
+		exit(EXIT_SUCCESS);
+	default:
+		Consola::setTextColor(Consola::VERMELHO);
+		Consola::gotoxy(2, 13);
+		cout << "[ERRO] - Comando invalido!" << endl;
+		Consola::setTextColor(Consola::BRANCO);
+		break;
+
+
+	}
+	return false;
+}
+
+bool Comandos::menu_simul(Mundo* m, Screen* s)const {
+	
+	Consola::gotoxy(2, 47);
+	cout << "Comando de simulacao: ";
+	getline(cin, comando);
+	Consola::clrscr();
+	istringstream iss(comando);
+	iss >> comando;
+
+	op = s->cmd_sim_op(comando);
+	switch (op) {
+
+	case 1: // ninho <linha> <coluna>
+		iss >> linha;
+		iss >> coluna;
+		if (linha < m->get_lim() && coluna < m->get_lim()) {
+			int x = 0, y = 0;
+			for (auto i = 0; i <= 20; i++) {
+				if (i == linha)
+					y = i + 18;
+			}
+			for (auto i = 0; i <= 20; i++) {
+				if (i == coluna)
+					x = i + 59;
+			}
+			m->set_ninho_xy(x, y);
+			m->cria_comunidade();
+		}else
+		{
+			Consola::setTextColor(Consola::VERMELHO_CLARO);
+			Consola::gotoxy(45, 40);
+			cout << "Posição ultrapassa tamanho do mundo!" << endl;
+			Consola::setTextColor(Consola::BRANCO);
+		}
+		break;
+
+	case 2: // criaf <F> <T> <N>
+		break;
+
+	case 3: // cria1 <T> <N> <linha> <coluna>
+		iss >> t;
+		iss >> n;
+		iss >> linha;
+		iss >> coluna;
+		if (linha < m->get_lim() && coluna < m->get_lim()) {
+			int x = 0, y = 0;
+			for (auto i = 0; i <= 20; i++) {
+				if (i == linha)
+					y = i + 18;
+			}
+			for (auto i = 0; i <= 20; i++) {
+				if (i == coluna)
+					x = i + 59;
+			}
+			for(auto i = 0; i < m->get_comunidade().size(); i++)
+			{
+				Comunidade *comu = m->get_comunidade().at(i);
+				if (comu->get_ninho()->get_id() == n )
+				{
+					comu->add_formiga_at(t, x, y);
+				}
+				
+			}
+			
+		}
+		else
+		{
+			Consola::setTextColor(Consola::VERMELHO_CLARO);
+			Consola::gotoxy(45, 40);
+			cout << "Posição ultrapassa tamanho do mundo!" << endl;
+			Consola::setTextColor(Consola::BRANCO);
+		}
+		break;
+
+	case 4: // migalha <linha> <coluna>
+		break;
+
+	case 5: // foca <linha> <coluna>
+		break;
+
+	case 6: // tempo || tempo <N>
+		
+		for (auto i = 0; i < m->get_comunidade().size(); i++)
+		{
+			// NINHOS
+			Comunidade *comu = m->get_comunidade().at(i);
+			
+			//FORMIGAS
+			for (auto j = 0; j < comu->get_formiga().size(); j++)
+			{
+				Formiga* form = comu->get_formiga().at(j);
+				form->anda();
+			}
+		}
+		break;
+
+	case 7: // energninho <N> <E>
+		break;
+
+	case 8: // energformiga <linha> <coluna> <E>
+		break;
+
+	case 9: // mata <linha> <coluna>
+		break;
+
+	case 10: // inseticida <N>
+		break;
+
+	case 11: // listamundo
+		break;
+
+	case 12: // listaninho <N>
+		break;
+
+	case 13: // listaposicao <linha>  <coluna>
+		break;
+
+	case 14: // guarda <nome>
+		break;
+
+	case 15: // muda <nome>
+		break;
+
+	case 16: // apaga <nome>
+		break;
+
+	case 17: // sair
+		exit(EXIT_SUCCESS);
+
+	default:
+		Consola::setTextColor(Consola::VERMELHO);
+		Consola::gotoxy(2, 13);
+		cout << "[ERRO] - Comando invalido!" << endl;
+		Consola::setTextColor(Consola::BRANCO);
+		break;
+	}
+	return false;
+}
