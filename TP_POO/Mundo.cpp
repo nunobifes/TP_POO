@@ -1,8 +1,13 @@
 #include "Mundo.h"
 
+
+int Mundo::cconta = 0;
 // CONSTRUTOR
 Mundo::Mundo(int l, int et)
-	: lim_max(l), energia_transf(et) {}
+	: lim_max(l), energia_transf(et)
+{
+	preenche_cor_vector();
+}
 
 // SET'S
 void Mundo::setLim(int l)
@@ -80,9 +85,9 @@ int Mundo::get_m_max() const
 // FUNCOES
 void Mundo::cria_comunidade()
 {
-	Comunidade *c = new Comunidade(this);
+	Comunidade *c = new Comunidade(this, cor.at(cconta));
 	co.push_back(c);
-	
+	cconta++;
 }
 void Mundo::cria_migalha()
 {
@@ -102,7 +107,18 @@ void Mundo::cria_migalha()
 	}
 	
 }
-
+void Mundo::preenche_cor_vector()
+{
+	for(auto i = 1; i<11; i++)
+	{
+		if (i == 2)
+			cor.push_back(i + 10);
+		else if (i == 10)
+			cor.push_back(i + 1);
+		else
+			cor.push_back(i);
+	}
+}
 // DESTRUTOR
 Mundo::~Mundo()
 {

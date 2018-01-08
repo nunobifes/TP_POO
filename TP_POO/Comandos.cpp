@@ -270,6 +270,13 @@ bool Comandos::menu_simul(Mundo* m, Screen* s)const {
 	case 1: // ninho <linha> <coluna>
 		iss >> linha;
 		iss >> coluna;
+		if (m->get_comunidade().size() > 9){
+			Consola::setTextColor(Consola::VERMELHO);
+			Consola::gotoxy(2, 13);
+			cout << "[ERRO] - Tamanho maximo de Comunidades atingido!" << endl;
+			Consola::setTextColor(Consola::BRANCO);
+			break;
+		}
 		if (linha < m->get_lim() && coluna < m->get_lim()) {
 			int x = 0, y = 0;
 			for (auto i = 0; i <= 20; i++) {
@@ -312,13 +319,13 @@ bool Comandos::menu_simul(Mundo* m, Screen* s)const {
 			for(auto i = 0; i < m->get_comunidade().size(); i++)
 			{
 				Comunidade *comu = m->get_comunidade().at(i);
-				if (comu->get_ninho()->get_id() == n )
+				if (comu->get_id() == n )
 				{
-					comu->add_formiga_at(t, x, y);
+					comu->add_formiga(m->get_lim(), t, x, y);
 				}
 				
 			}
-			
+			int i = 0; i++;
 		}
 		else
 		{

@@ -6,11 +6,11 @@
 #include "Mundo.h"
 
 //char Ninho::ident = 'N';
-int Ninho::conta = 1;
-Ninho::Ninho(int e, int x, int y, Comunidade* c, Mundo* m)
-:energia(e), x(x), y(y), cn(c), mn(m)
+
+Ninho::Ninho(int id, int e, int x, int y, Comunidade* c, Mundo* m)
+:id(id),energia(e), x(x), y(y), cn(c), mn(m)
 {
-	id = conta++;
+	
 	cerr << "id: " << id << " energia: " << energia << " posx: " << this->x << " posy: " << this->y << endl;
 }
 

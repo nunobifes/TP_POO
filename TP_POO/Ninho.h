@@ -20,20 +20,18 @@ class Mundo;
 class Ninho {
 	Comunidade* cn;
 	Mundo* mn;
-	static char ident;
-	static int conta;
 	int id;						// Atraves do id do ninho a formiga sabe a que ninho pertence....
 	int energia;
 	int x, y;
 
 public:
 
-	Ninho(int e, int x, int y, Comunidade* c, Mundo* m);
+	Ninho(int id, int e, int x, int y, Comunidade* c, Mundo* m);
 
 
 
 
-	int getId() const { return id; }
+	
 	int getEnergia() const { return energia; }
 	int getPosX() { return x; }
 	int getPosY() { return y; }
@@ -43,8 +41,7 @@ public:
 
 	//void setId(int i);
 	void setEnergia(int e);
-
-
+	void setId(int e);
 	void setPosX(int x);
 	void setPosY(int y);
 

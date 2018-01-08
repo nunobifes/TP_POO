@@ -105,6 +105,21 @@ void Screen::mostra_mapa() {
 void Screen::desenha(Mundo* m)
 {	
 	
+	int x, y;
+	Consola::setBackgroundColor(Consola::VERDE_CLARO);
+	for (auto i = 0; i < m->get_migalha().size(); i++)
+	{
+		Migalha* migalha = m->get_migalha().at(i);
+		x = migalha->get_posx();
+		y = migalha->get_posy();
+		if (x > 58 && x < 80 && y > 17 && y < 39) {
+			Consola::gotoxy(x, y);
+			Consola::setTextColor(Consola::AMARELO_CLARO);
+			cout << "*";
+			Consola::setTextColor(Consola::BRANCO);
+		}
+	}
+
 	if (m->get_comunidade().size() != 0)
 	{
 		int xn, yn, xf, yf;
@@ -117,7 +132,7 @@ void Screen::desenha(Mundo* m)
 			yn = comu->get_ninho()->getPosY();
 			if (xn > 58 && xn < 80 && yn > 17 && yn < 39) {
 				Consola::gotoxy(xn, yn);
-				Consola::setTextColor(Consola::AZUL);
+				Consola::setTextColor(comu->get_cor());
 				cout << "N";
 				Consola::setTextColor(Consola::BRANCO);
 			}
@@ -131,28 +146,16 @@ void Screen::desenha(Mundo* m)
 				if (xf > 58 && xf < 80 && yf > 17 && yf < 39) {
 					Consola::gotoxy(xf, yf);
 					
-					Consola::setTextColor(form->get_cor());
-					cout << 'f';
+					Consola::setTextColor(comu->get_cor());
+					char letra = form->get_tipo();
+					cout << letra;
 					Consola::setTextColor(Consola::BRANCO);
 				}
+				int i = 0; i++;
 			}
 		}
 	}
 
-	int x, y;
-	Consola::setBackgroundColor(Consola::VERDE_CLARO);
-	for(auto i = 0; i < m->get_migalha().size(); i++)
-	{
-		Migalha* migalha = m->get_migalha().at(i);
-		x = migalha->get_posx();
-		y = migalha->get_posy();
-		if (x > 58 && x < 80 && y > 17 && y < 39) {
-			Consola::gotoxy(x, y);
-			Consola::setTextColor(Consola::AMARELO);
-			cout << "*";
-			Consola::setTextColor(Consola::BRANCO);
-		}
-	}
 	Consola::setBackgroundColor(Consola::PRETO);
 }
 

@@ -18,6 +18,8 @@ class Mundo {
 	
 	vector <Comunidade*> co;
 	vector <Migalha*> mig;
+	vector <int> cor;
+	static int cconta;
 	int lim_max;
 	int energia_ninho;
 	int perc_energia;
@@ -51,6 +53,7 @@ public:
 
 	void cria_comunidade();
 	void cria_migalha();
+	void preenche_cor_vector();
 
 	~Mundo();
 };

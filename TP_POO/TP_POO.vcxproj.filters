@@ -25,12 +25,6 @@
     <Filter Include="Source Files\Aplicação">
       <UniqueIdentifier>{d572b959-5bde-4b1f-8390-84441834ea37}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Aplicação\Tipo_Formiga">
-      <UniqueIdentifier>{c13b1c5f-2a03-4982-9421-1598568b0db5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Aplicação\Tipo_Formiga">
-      <UniqueIdentifier>{56ec022e-b5ae-4fd8-b501-d1d96eb7f638}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gestor.h">
@@ -63,20 +57,8 @@
     <ClInclude Include="Regra.h">
       <Filter>Header Files\Aplicação</Filter>
     </ClInclude>
-    <ClInclude Include="Cuidadora.h">
-      <Filter>Header Files\Aplicação\Tipo_Formiga</Filter>
-    </ClInclude>
-    <ClInclude Include="Vigilante.h">
-      <Filter>Header Files\Aplicação\Tipo_Formiga</Filter>
-    </ClInclude>
-    <ClInclude Include="Assaltante.h">
-      <Filter>Header Files\Aplicação\Tipo_Formiga</Filter>
-    </ClInclude>
-    <ClInclude Include="Exploradora.h">
-      <Filter>Header Files\Aplicação\Tipo_Formiga</Filter>
-    </ClInclude>
-    <ClInclude Include="Surpresa.h">
-      <Filter>Header Files\Aplicação\Tipo_Formiga</Filter>
+    <ClInclude Include="Formiga_Tipo.h">
+      <Filter>Header Files\Aplicação</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -112,21 +94,6 @@
     </ClCompile>
     <ClCompile Include="Regra.cpp">
       <Filter>Source Files\Aplicação</Filter>
-    </ClCompile>
-    <ClCompile Include="Cuidadora.cpp">
-      <Filter>Source Files\Aplicação\Tipo_Formiga</Filter>
-    </ClCompile>
-    <ClCompile Include="Vigilante.cpp">
-      <Filter>Source Files\Aplicação\Tipo_Formiga</Filter>
-    </ClCompile>
-    <ClCompile Include="Assaltante.cpp">
-      <Filter>Source Files\Aplicação\Tipo_Formiga</Filter>
-    </ClCompile>
-    <ClCompile Include="Exploradora.cpp">
-      <Filter>Source Files\Aplicação\Tipo_Formiga</Filter>
-    </ClCompile>
-    <ClCompile Include="Surpresa.cpp">
-      <Filter>Source Files\Aplicação\Tipo_Formiga</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

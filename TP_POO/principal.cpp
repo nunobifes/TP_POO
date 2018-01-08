@@ -4,6 +4,7 @@
 #include <string>
 #include <windows.h>
 #include <fstream>
+#include <ctime>
 #include "Comandos.h"
 #include "Gestor.h"
 
@@ -14,6 +15,7 @@
 Gestor* c;
 
 int main() {
+	srand(time(NULL));
 	c = new Gestor;
 	
 	c->run();
