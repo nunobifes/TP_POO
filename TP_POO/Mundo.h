@@ -19,7 +19,8 @@ class Mundo {
 	vector <Comunidade*> co;
 	vector <Migalha*> mig;
 	vector <int> cor;
-	static int cconta;
+	string nome;
+	int cconta;
 	int lim_max;
 	int energia_ninho;
 	int perc_energia;
@@ -31,6 +32,8 @@ class Mundo {
 
 public:
 	Mundo(int l, int et);
+	
+	Mundo(Mundo &m);
 
 	void setLim(int l);
 	void set_energ_ninho(int e);
@@ -40,7 +43,8 @@ public:
 	void set_m_e_inical(int me);
 	void set_m_per_inicial(int mpe);
 	void set_m_max(int mm);
-	
+	void set_nome(string n);
+
 	int get_energia_ninho() const;
 	int get_posx_ninho() const;
 	int get_posy_ninho() const;
@@ -50,10 +54,14 @@ public:
 	int get_m_e_inical() const;
 	int get_m_per_inicial() const;
 	int get_m_max() const;
+	string get_nome() const;
 
 	void cria_comunidade();
 	void cria_migalha();
+	void comeu_migalha();
 	void preenche_cor_vector();
+	void elimina_comunidade(int n);
+	
 
 	~Mundo();
 };

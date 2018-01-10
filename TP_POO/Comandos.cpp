@@ -14,8 +14,8 @@ using namespace std;
 
 int flagEnerg = 0, flagTam = 0, flagPerc = 0, flagMEnerg = 0, flagMPerc = 0, flagMMax = 0;
 char t;
-int op, linhas = 0, energia = 0, energia_perc = 0, energia_transf = 0, per_miga = 0, energia_miga = 0, max_miga = 0, linha= 0, coluna= 0, n=0;
-string comando;
+int op, linhas = 0, energia = 0, energia_perc = 0, energia_transf = 0, per_miga = 0, energia_miga = 0, max_miga = 0, linha= 0, coluna= 0, n=0, f = 0;
+string nome, comando;
 
 
 
@@ -255,8 +255,9 @@ bool Comandos::menu_config(Mundo* m, Screen* s)const {
 	return false;
 }
 
-bool Comandos::menu_simul(Mundo* m, Screen* s)const {
-	
+bool Comandos::menu_simul(Mundo** ppcm, Mundo** ppm, Screen* s)const {
+	Mundo * m = *ppm;
+	Mundo * mc = *ppcm;
 	Consola::gotoxy(2, 47);
 	cout << "Comando de simulacao: ";
 	getline(cin, comando);
@@ -281,11 +282,11 @@ bool Comandos::menu_simul(Mundo* m, Screen* s)const {
 			int x = 0, y = 0;
 			for (auto i = 0; i <= 20; i++) {
 				if (i == linha)
-					y = i + 18;
+					y = i;
 			}
 			for (auto i = 0; i <= 20; i++) {
 				if (i == coluna)
-					x = i + 59;
+					x = i;
 			}
 			m->set_ninho_xy(x, y);
 			m->cria_comunidade();
@@ -299,6 +300,21 @@ bool Comandos::menu_simul(Mundo* m, Screen* s)const {
 		break;
 
 	case 2: // criaf <F> <T> <N>
+		iss >> f;
+		iss >> t;
+		iss >> n;
+		
+			for (auto i = 0; i < m->get_comunidade().size(); i++)
+			{
+				Comunidade *comu = m->get_comunidade().at(i);
+				if (comu->get_id() == n)
+				{
+					for(auto j = 0; j < f; j++)
+						comu->add_formiga(m->get_lim(), t, -1, -1);
+				}
+
+			}
+
 		break;
 
 	case 3: // cria1 <T> <N> <linha> <coluna>
@@ -310,11 +326,11 @@ bool Comandos::menu_simul(Mundo* m, Screen* s)const {
 			int x = 0, y = 0;
 			for (auto i = 0; i <= 20; i++) {
 				if (i == linha)
-					y = i + 18;
+					y = i;
 			}
 			for (auto i = 0; i <= 20; i++) {
 				if (i == coluna)
-					x = i + 59;
+					x = i;
 			}
 			for(auto i = 0; i < m->get_comunidade().size(); i++)
 			{
@@ -325,7 +341,6 @@ bool Comandos::menu_simul(Mundo* m, Screen* s)const {
 				}
 				
 			}
-			int i = 0; i++;
 		}
 		else
 		{
@@ -365,9 +380,55 @@ bool Comandos::menu_simul(Mundo* m, Screen* s)const {
 		break;
 
 	case 9: // mata <linha> <coluna>
+		iss >> linha;
+		iss >> coluna;
+		
+		if (linha < m->get_lim() && coluna < m->get_lim()) {
+			int x = 0, y = 0;
+			for (auto i = 0; i <= 20; i++) {
+				if (i == linha)
+					y = i + 18;
+			}
+			for (auto i = 0; i <= 20; i++) {
+				if (i == coluna)
+					x = i + 49;
+			}
+			for (auto i = 0; i < m->get_comunidade().size(); i++)
+				m->get_comunidade().at(i)->mata_formiga(x, y);
+		}
+		else
+		{
+			Consola::setTextColor(Consola::VERMELHO_CLARO);
+			Consola::gotoxy(45, 40);
+			cout << "Posicao ultrapassa tamanho do mundo!" << endl;
+			Consola::setTextColor(Consola::BRANCO);
+		}
 		break;
+		
 
 	case 10: // inseticida <N>
+
+		iss >> n;
+
+		if (linha < m->get_lim() && coluna < m->get_lim()) {
+			int x = 0, y = 0;
+			for (auto i = 0; i <= 20; i++) {
+				if (i == linha)
+					y = i + 18;
+			}
+			for (auto i = 0; i <= 20; i++) {
+				if (i == coluna)
+					x = i + 49;
+			}
+			m->elimina_comunidade(n);
+		}
+		else
+		{
+			Consola::setTextColor(Consola::VERMELHO_CLARO);
+			Consola::gotoxy(45, 40);
+			cout << "Ninho nao existe!" << endl;
+			Consola::setTextColor(Consola::BRANCO);
+		}
 		break;
 
 	case 11: // listamundo
@@ -380,16 +441,30 @@ bool Comandos::menu_simul(Mundo* m, Screen* s)const {
 		break;
 
 	case 14: // guarda <nome>
+		iss >> nome;
+		m->set_nome(nome);
+		*ppcm = new Mundo(*m);
 		break;
 
 	case 15: // muda <nome>
+		delete m;
+		*ppm = *ppcm;
+		m = *ppm;
 		break;
 
 	case 16: // apaga <nome>
 		break;
 
 	case 17: // sair
-		exit(EXIT_SUCCESS);
+		
+		Comunidade::reset_id();
+		//m->get_comunidade().at((m->get_comunidade().size() - 1))->reset_id();
+		delete m;
+		*ppm = new Mundo(10, 1);
+		m = *ppm; // para o caso de usar m daqui a bocado nesta função
+		flagEnerg = 0, flagTam = 0, flagPerc = 0, flagMEnerg = 0, flagMPerc = 0, flagMMax = 0;
+		linhas = 0, energia = 0, energia_perc = 0, energia_transf = 0, per_miga = 0, energia_miga = 0, max_miga = 0, linha = 0, coluna = 0, n = 0, f = 0;
+		return true;
 
 	default:
 		Consola::setTextColor(Consola::VERMELHO);

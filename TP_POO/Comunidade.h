@@ -42,11 +42,12 @@ public:
 
 //	void setEnergiaNinho(Mundo* m, int energia);
 	//void setNinho(Ninho* ni);
+	static void reset_id();
 	void add_formiga(int lim, char t, int x, int y);
-
+	void mata_formiga(int x, int y);
 	//void setFormiga(Formiga* form);
 
-
+	~Comunidade();
 
 
 };

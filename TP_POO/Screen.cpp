@@ -18,7 +18,7 @@ int Screen::cmd_op(string s) {
 		op = 2;
 	else if (!s.compare("defpc"))
 		op = 3;
-	else if (!s.compare("defpc"))
+	else if (!s.compare("defvt"))
 		op = 4;
 	else if (!s.compare("defmi"))
 		op = 5;
@@ -76,25 +76,78 @@ int Screen::cmd_sim_op(string s) {
 	return op;
 }
 
-void Screen::mostra_mapa() {
+void Screen::mostra_mapa(Mundo* m) {
 
 	//Consola::clrscr();
 
-	for (int y = 17; y < 39; y++) {
-		for (int x = 58; x < 80; x++) {
+	for (int y = 15; y < 39; y++) {
+		for (int x = 46; x < 90; x++) {
 			Consola::gotoxy(x, y);
-			if (x == 58 || y == 17 || x == 79 || y == 38)
+			
+			if (x > 48 && y == 15 && x < 89)
+			{
+				
+				Consola::setBackgroundColor(Consola::PRETO);
+				Consola::setTextColor(Consola::BRANCO_CLARO);
+				if((x - 49) % 10 == 0)
+					cout << int((x-49) / 10);
+			}
+			else if(x > 48 && y == 16 && x < 89)
+			{
+				Consola::setBackgroundColor(Consola::PRETO);
+				Consola::setTextColor(Consola::BRANCO_CLARO);
+				cout << ((x - 49) % 10);
+			}
+			
+			else if (y > 17 && x == 47 && y < 38)
+			{
+				Consola::setBackgroundColor(Consola::PRETO);
+				Consola::setTextColor(Consola::BRANCO_CLARO);
+				cout << ((y - 18) % 10);
+			}
+			else if (y > 17 && x == 46 && y < 38)
+			{
+				Consola::setBackgroundColor(Consola::PRETO);
+				Consola::setTextColor(Consola::BRANCO_CLARO);
+				if((y - 18) % 10 == 0)
+					cout << int((y-18) / 10);
+			}
+			else if (y == 15 || y == 16)
+				Consola::setBackgroundColor(Consola::PRETO);
+			else if (x == 46 || x == 47)
+				Consola::setBackgroundColor(Consola::PRETO);
+
+			else if (((x == 48 || x == 89) && y >= 17 && y <= 38) || ((y == 17 || y == 38) && x >= 48 && y <= 89))
 			{
 
 				Consola::setBackgroundColor(Consola::BRANCO_CLARO);
 				cout << (char)219;
 			}
-
+			else if(x >48 && y > 17 && x == (m->get_lim() + 49) && y < (m->get_lim() + 18))
+			{
+				Consola::setBackgroundColor(Consola::VERDE_CLARO);
+				Consola::setTextColor(Consola::BRANCO_CLARO);
+				cout << (char)186;
+			}
+			else if (x > 48 && y > 17 && y == m->get_lim() + 18 && x < (m->get_lim() + 49))
+			{
+				Consola::setBackgroundColor(Consola::VERDE_CLARO);
+				Consola::setTextColor(Consola::BRANCO_CLARO);
+				cout << (char)205;
+			}
+			else if (x == (m->get_lim() + 49) && y == (m->get_lim() + 18))
+			{
+				Consola::setBackgroundColor(Consola::VERDE_CLARO);
+				Consola::setTextColor(Consola::BRANCO_CLARO);
+				cout << (char)188;
+			}
 			else
 			{
 				Consola::setBackgroundColor(Consola::VERDE_CLARO);
 				cout << ' ';
 			}
+			
+
 		}
 	}
 	Consola::setBackgroundColor(Consola::PRETO);
@@ -110,9 +163,10 @@ void Screen::desenha(Mundo* m)
 	for (auto i = 0; i < m->get_migalha().size(); i++)
 	{
 		Migalha* migalha = m->get_migalha().at(i);
-		x = migalha->get_posx();
-		y = migalha->get_posy();
-		if (x > 58 && x < 80 && y > 17 && y < 39) {
+		x = corrige_posX(migalha->get_posx());
+		y = corrige_posY(migalha->get_posy());
+		if(m->get_lim())
+		if (x > 48 && x < 90 && y > 17 && y < 38) {
 			Consola::gotoxy(x, y);
 			Consola::setTextColor(Consola::AMARELO_CLARO);
 			cout << "*";
@@ -126,24 +180,14 @@ void Screen::desenha(Mundo* m)
 		Consola::setBackgroundColor(Consola::VERDE_CLARO);
 		for (auto i = 0; i < m->get_comunidade().size(); i++)
 		{
-			// NINHOS
 			Comunidade *comu = m->get_comunidade().at(i);
-			xn = comu->get_ninho()->getPosX();
-			yn = comu->get_ninho()->getPosY();
-			if (xn > 58 && xn < 80 && yn > 17 && yn < 39) {
-				Consola::gotoxy(xn, yn);
-				Consola::setTextColor(comu->get_cor());
-				cout << "N";
-				Consola::setTextColor(Consola::BRANCO);
-			}
-
 			//FORMIGAS
 			for(auto j = 0; j < comu->get_formiga().size(); j++)
 			{
-				Formiga* form = comu->get_formiga().at(j);
-				xf = form->get_posX();
-				yf = form->get_posY();
-				if (xf > 58 && xf < 80 && yf > 17 && yf < 39) {
+				Formiga* form = comu->get_formiga()[j];
+				xf = corrige_posX(form->get_posX());
+				yf = corrige_posY(form->get_posY());
+				if (xf > 48 && xf < 90 && yf > 17 && yf < 39) {
 					Consola::gotoxy(xf, yf);
 					
 					Consola::setTextColor(comu->get_cor());
@@ -153,10 +197,50 @@ void Screen::desenha(Mundo* m)
 				}
 				int i = 0; i++;
 			}
+
+			// NINHOS
+			xn = corrige_posX(comu->get_ninho()->getPosX());
+			yn = corrige_posY(comu->get_ninho()->getPosY());
+			if (xn > 48 && xn < 90 && yn > 17 && yn < 39) {
+				Consola::gotoxy(xn, yn);
+				Consola::setTextColor(comu->get_cor());
+				cout << "N";
+				Consola::setTextColor(Consola::BRANCO);
+			}
 		}
 	}
 
 	Consola::setBackgroundColor(Consola::PRETO);
+}
+
+void Screen::mostra_info(Mundo* m)
+{
+	for (auto i = 0; i < m->get_comunidade().size(); i++)
+	{
+		Comunidade *comu = m->get_comunidade().at(i);
+		
+		for(auto j = 0; j < comu->get_formiga().size(); j++)
+		{
+			Formiga *f = comu->get_formiga().at(j);
+			Consola::gotoxy(2, 13+j);
+			cout << "N: " << i << " F: " << j << " T: " << f->get_tipo() << " E: " << f->get_energia() << " x: " << corrige_posX(f->get_posX()) << ':' << f->get_posX() << " y: " << corrige_posY(f->get_posY()) << ':' << f->get_posY()  << endl;
+		}
+
+	}
+	Consola::gotoxy(2, 12);
+	cout << "Migalhas: " << m->get_migalha().size() << endl;
+}
+
+int Screen::corrige_posX(int x)
+{
+	x = x + 49;
+	return x;
+}
+
+int Screen::corrige_posY(int y)
+{
+	y = y + 18;
+	return y;
 }
 
 

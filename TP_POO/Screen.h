@@ -13,15 +13,17 @@ using namespace std;
 class Screen
 {
 public:
-	int cmd_op(string s);
-	int cmd_sim_op(string s);
+	static int cmd_op(string s);
+	static int cmd_sim_op(string s);
 
-	void mostra_mapa();
-	void desenha(Mundo* m);
-
-	void margens();
-	void intro();
-	void intro_sim();	
+	static void mostra_mapa(Mundo* m);
+	static void desenha(Mundo* m);
+	static void mostra_info(Mundo* m);
+	static int corrige_posX(int x);
+	static int corrige_posY(int y);
+	static void margens();
+	static void intro();
+	static void intro_sim();
 };
 
 #endif

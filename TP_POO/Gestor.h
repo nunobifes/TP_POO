@@ -14,7 +14,8 @@
 #include "Migalha.h"
 
 class Gestor {
-	Mundo m;
+	Mundo * m;
+	Mundo* mc;
 	Comandos c;
 	Screen s;
 	
@@ -22,6 +23,7 @@ class Gestor {
 public:
 	Gestor();
 	void run();
+	~Gestor();
 
 };
 
