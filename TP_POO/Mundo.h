@@ -57,7 +57,8 @@ public:
 	string get_nome() const;
 
 	void cria_comunidade();
-	void cria_migalha();
+	void avanca_tempo(int vezes);
+	void cria_migalha(int x, int y);
 	void comeu_migalha();
 	void preenche_cor_vector();
 	void elimina_comunidade(int n);

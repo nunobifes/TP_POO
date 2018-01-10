@@ -14,7 +14,7 @@ using namespace std;
 
 int flagEnerg = 0, flagTam = 0, flagPerc = 0, flagMEnerg = 0, flagMPerc = 0, flagMMax = 0;
 char t;
-int op, linhas = 0, energia = 0, energia_perc = 0, energia_transf = 0, per_miga = 0, energia_miga = 0, max_miga = 0, linha= 0, coluna= 0, n=0, f = 0;
+int op, linhas = 0, energia = 0, energia_perc = 0, energia_transf = 0, per_miga = 0, energia_miga = 0, max_miga = 0, linha= 0, coluna= 0, n=0, f = 0, vezes = 0;
 string nome, comando;
 
 
@@ -352,25 +352,36 @@ bool Comandos::menu_simul(Mundo** ppcm, Mundo** ppm, Screen* s)const {
 		break;
 
 	case 4: // migalha <linha> <coluna>
+		iss >> linha;
+		iss >> coluna;
+		if (linha < m->get_lim() && coluna < m->get_lim()) {
+			int x = 0, y = 0;
+			for (auto i = 0; i <= 20; i++) {
+				if (i == linha)
+					y = i;
+			}
+			for (auto i = 0; i <= 20; i++) {
+				if (i == coluna)
+					x = i;
+			}
+			m->cria_migalha(x, y);
+		}
+		else
+		{
+			Consola::setTextColor(Consola::VERMELHO_CLARO);
+			Consola::gotoxy(45, 40);
+			cout << "Posição ultrapassa tamanho do mundo!" << endl;
+			Consola::setTextColor(Consola::BRANCO);
+		}
+		
 		break;
 
 	case 5: // foca <linha> <coluna>
 		break;
 
 	case 6: // tempo || tempo <N>
-		
-		for (auto i = 0; i < m->get_comunidade().size(); i++)
-		{
-			// NINHOS
-			Comunidade *comu = m->get_comunidade().at(i);
-			
-			//FORMIGAS
-			for (auto j = 0; j < comu->get_formiga().size(); j++)
-			{
-				Formiga* form = comu->get_formiga().at(j);
-				form->anda();
-			}
-		}
+		iss >> vezes;
+		m->avanca_tempo(vezes);
 		break;
 
 	case 7: // energninho <N> <E>
@@ -463,7 +474,7 @@ bool Comandos::menu_simul(Mundo** ppcm, Mundo** ppm, Screen* s)const {
 		*ppm = new Mundo(10, 1);
 		m = *ppm; // para o caso de usar m daqui a bocado nesta função
 		flagEnerg = 0, flagTam = 0, flagPerc = 0, flagMEnerg = 0, flagMPerc = 0, flagMMax = 0;
-		linhas = 0, energia = 0, energia_perc = 0, energia_transf = 0, per_miga = 0, energia_miga = 0, max_miga = 0, linha = 0, coluna = 0, n = 0, f = 0;
+		linhas = 0, energia = 0, energia_perc = 0, energia_transf = 0, per_miga = 0, energia_miga = 0, max_miga = 0, linha = 0, coluna = 0, n = 0, f = 0, vezes = 0;
 		return true;
 
 	default:

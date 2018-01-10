@@ -18,7 +18,7 @@ void Gestor::run() {
 				ready = false;
 		}
 
-		m->cria_migalha();
+		m->cria_migalha(-1, -1);
 		// simulacao
 		ready = true;
 		while (ready) {

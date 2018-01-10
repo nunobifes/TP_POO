@@ -106,21 +106,65 @@ void Mundo::cria_comunidade()
 	co.push_back(c);
 	cconta++;
 }
-void Mundo::cria_migalha()
+void Mundo::cria_migalha(int x, int y)
 {
+	int perc;
 	if(mig.size() == 0)
 	{
-		int perc;
 		perc = ((lim_max*lim_max)*m_per_inicial) / 100;
 
 		for(auto i = 0; i < perc; i++)
 		{
-			int x = (rand() % lim_max);
-			int y = (rand() % lim_max);
+			int xr = (rand() % lim_max);
+			int yr = (rand() % lim_max);
 
-			Migalha* miga = new Migalha(m_e_inicial, x, y);
+			Migalha* miga = new Migalha(m_e_inicial, xr, yr);
 			mig.push_back(miga);
 		}
+	}
+	else if(x > -1 && y > -1)
+	{
+		Migalha* miga = new Migalha(m_e_inicial, x, y);
+		mig.push_back(miga);
+	}
+	else
+	{
+		perc = rand() % m_max;
+		for (auto i = 0; i < perc; i++)
+		{
+			int xr = (rand() % lim_max);
+			int yr = (rand() % lim_max);
+
+			Migalha* miga = new Migalha(m_e_inicial, xr, yr);
+			mig.push_back(miga);
+		}
+	}
+	
+}
+
+void Mundo::avanca_tempo(int vezes)
+{
+	if (vezes < 1)
+		vezes = 1;
+	for (auto v = 0; v < vezes; v++) {
+
+		for (auto i = 0; i < get_comunidade().size(); i++)
+		{
+			// NINHOS
+			Comunidade *comu = get_comunidade().at(i);
+
+			//FORMIGAS
+			for (auto j = 0; j < comu->get_formiga().size(); j++)
+			{
+				Formiga* form = comu->get_formiga().at(j);
+				form->anda();
+				
+			}
+			
+		}
+		comeu_migalha();
+		cria_migalha(-1, -1);
+		
 	}
 	
 }
@@ -130,16 +174,16 @@ void Mundo::comeu_migalha()
 	for (auto i = 0; i < get_comunidade().size(); i++)
 	{
 		Comunidade* c = get_comunidade().at(i);
-		for(auto j = 0; c->get_formiga().size(); j++)
+		for(auto j = 0; j < c->get_formiga().size(); j++)
 		{
 			Formiga* f = c->get_formiga().at(j);
-			for(auto k = 0; get_migalha().size(); k++)
+			for(auto k = 0; k < get_migalha().size(); k++)
 			{
-				Migalha* mi = get_migalha().at(k);
-				if((mi->get_posx() == f->get_posX()) && (mi->get_posy() == f->get_posY()))
+				mig.at(k);
+				if((mig.at(k)->get_posx() == f->get_posX()) && (mig.at(k)->get_posy() == f->get_posY()))
 				{
 					mig.erase(mig.begin() + k);
-					f->contr_energia(mi->get_energia());
+					f->contr_energia(m_e_inicial);
 				}
 			}
 		}
