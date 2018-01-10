@@ -113,3 +113,5 @@ void Formiga::contr_energia(int ener)
 {
 	this->energia += ener;
 }
+
+

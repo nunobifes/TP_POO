@@ -158,6 +158,9 @@ void Mundo::avanca_tempo(int vezes)
 			{
 				Formiga* form = comu->get_formiga().at(j);
 				form->anda();
+				// se energia for menor ou igual a 0
+				if (form->get_energia() <= 0)
+					comu->mata_formiga(form->get_posX(), form->get_posY());
 				
 			}
 			
