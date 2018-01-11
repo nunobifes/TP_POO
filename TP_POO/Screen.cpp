@@ -213,7 +213,7 @@ void Screen::desenha(Mundo* m)
 	Consola::setBackgroundColor(Consola::PRETO);
 }
 
-void Screen::mostra_info(Mundo* m)
+/*void Screen::mostra_info(Mundo* m) // Metodo criado para debug
 {
 	for (auto i = 0; i < m->get_comunidade().size(); i++)
 	{
@@ -229,7 +229,7 @@ void Screen::mostra_info(Mundo* m)
 	}
 	Consola::gotoxy(2, 12);
 	cout << "Migalhas: " << m->get_migalha().size() << endl;
-}
+}*/
 
 int Screen::corrige_posX(int x)
 {

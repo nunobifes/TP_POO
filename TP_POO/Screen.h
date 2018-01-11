@@ -18,7 +18,7 @@ public:
 
 	static void mostra_mapa(Mundo* m);
 	static void desenha(Mundo* m);
-	static void mostra_info(Mundo* m);
+	//static void mostra_info(Mundo* m); // Metodo criado para debug
 	static int corrige_posX(int x);
 	static int corrige_posY(int y);
 	static void margens();
