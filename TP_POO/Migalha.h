@@ -28,6 +28,8 @@ public:
 	int get_posx() const;
 	int get_posy() const;
 
+	string lista_info() const;
+
 };
 
 #endif

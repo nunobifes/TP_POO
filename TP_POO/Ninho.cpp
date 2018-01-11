@@ -11,7 +11,7 @@ Ninho::Ninho(int id, int e, int x, int y, Comunidade* c, Mundo* m)
 :id(id),energia(e), x(x), y(y), cn(c), mn(m)
 {
 	
-	cerr << "id: " << id << " energia: " << energia << " posx: " << this->x << " posy: " << this->y << endl;
+	//cerr << "id: " << id << " energia: " << energia << " posx: " << this->x << " posy: " << this->y << endl;
 }
 
 void Ninho::set_comunid(Comunidade* c)
@@ -40,6 +40,23 @@ void Ninho::setPosY(int y) {
 int Ninho::get_id() const
 {
 	return id;
+}
+
+
+void Ninho::contr_energia(int ener)
+{
+	this->energia += ener;
+}
+
+
+string Ninho::lista_info() const
+{
+	string info;
+	ostringstream oss;
+	oss << "Energia: " << this->energia << " PosX: " << this->x << " PosY: " << this->y << endl;
+	info = oss.str();
+
+	return info;
 }
 
 

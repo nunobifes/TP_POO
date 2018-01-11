@@ -101,6 +101,17 @@ void Comunidade::mata_formiga(int x, int y)
 	}
 }
 
+string Comunidade::lista_info() const
+{
+	string info;
+	ostringstream oss;
+	oss << "ID: " << this->id << " Cor: " << this->cor << " Num Formigas: " << form.size() << endl;
+	info = oss.str();
+
+	return info;
+}
+
+
 Comunidade::~Comunidade()
 {
 	form.clear();

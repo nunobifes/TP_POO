@@ -34,3 +34,13 @@ int Migalha::get_posy() const
 {
 	return y;
 }
+
+string Migalha::lista_info() const
+{
+	string info;
+	ostringstream oss;
+	oss << "Energia: " << this->energia << " PosX: " << this->x << " PosY: " << this->y << endl;
+	info = oss.str();
+
+	return info;
+}

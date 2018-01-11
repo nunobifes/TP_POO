@@ -56,12 +56,16 @@ public:
 	int get_m_max() const;
 	string get_nome() const;
 
+
+	void add_energia_ninho(int n, int e);
+	void add_energia_formiga(int x, int y, int e);
 	void cria_comunidade();
 	void avanca_tempo(int vezes);
 	void cria_migalha(int x, int y);
 	void comeu_migalha();
 	void preenche_cor_vector();
 	void elimina_comunidade(int n);
+	string lista_info() const;
 	
 
 	~Mundo();

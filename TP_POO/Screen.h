@@ -24,6 +24,10 @@ public:
 	static void margens();
 	static void intro();
 	static void intro_sim();
+	static void lista_mundo(Mundo** m);
+	static void lista_ninho(Mundo** m, int n);
+	static void lista_posicao(Mundo** m, int x, int y);
+
 };
 
 #endif

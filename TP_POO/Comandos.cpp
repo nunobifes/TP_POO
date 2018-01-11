@@ -280,11 +280,11 @@ bool Comandos::menu_simul(Mundo** ppcm, Mundo** ppm, Screen* s)const {
 		}
 		if (linha < m->get_lim() && coluna < m->get_lim()) {
 			int x = 0, y = 0;
-			for (auto i = 0; i <= 20; i++) {
+			for (auto i = 0; i <= m->get_lim(); i++) {
 				if (i == linha)
 					y = i;
 			}
-			for (auto i = 0; i <= 20; i++) {
+			for (auto i = 0; i <= m->get_lim(); i++) {
 				if (i == coluna)
 					x = i;
 			}
@@ -324,11 +324,11 @@ bool Comandos::menu_simul(Mundo** ppcm, Mundo** ppm, Screen* s)const {
 		iss >> coluna;
 		if (linha < m->get_lim() && coluna < m->get_lim()) {
 			int x = 0, y = 0;
-			for (auto i = 0; i <= 20; i++) {
+			for (auto i = 0; i <= m->get_lim(); i++) {
 				if (i == linha)
 					y = i;
 			}
-			for (auto i = 0; i <= 20; i++) {
+			for (auto i = 0; i <= m->get_lim(); i++) {
 				if (i == coluna)
 					x = i;
 			}
@@ -356,11 +356,11 @@ bool Comandos::menu_simul(Mundo** ppcm, Mundo** ppm, Screen* s)const {
 		iss >> coluna;
 		if (linha < m->get_lim() && coluna < m->get_lim()) {
 			int x = 0, y = 0;
-			for (auto i = 0; i <= 20; i++) {
+			for (auto i = 0; i < m->get_lim(); i++) {
 				if (i == linha)
 					y = i;
 			}
-			for (auto i = 0; i <= 20; i++) {
+			for (auto i = 0; i < m->get_lim(); i++) {
 				if (i == coluna)
 					x = i;
 			}
@@ -385,9 +385,30 @@ bool Comandos::menu_simul(Mundo** ppcm, Mundo** ppm, Screen* s)const {
 		break;
 
 	case 7: // energninho <N> <E>
+		
+		iss >> n;
+		iss >> energia;
+		m->add_energia_ninho(n, energia);
+
 		break;
 
 	case 8: // energformiga <linha> <coluna> <E>
+		iss >> linha;
+		iss >> coluna;
+		iss >> energia;
+		if (linha < m->get_lim() && coluna < m->get_lim()) {
+			int x = 0, y = 0;
+			for (auto i = 0; i <= m->get_lim(); i++) {
+				if (i == linha)
+					y = i;
+			}
+			for (auto i = 0; i <= m->get_lim(); i++) {
+				if (i == coluna)
+					x = i;
+			}
+
+			m->add_energia_formiga(x, y, energia);
+		}
 		break;
 
 	case 9: // mata <linha> <coluna>
@@ -396,14 +417,15 @@ bool Comandos::menu_simul(Mundo** ppcm, Mundo** ppm, Screen* s)const {
 		
 		if (linha < m->get_lim() && coluna < m->get_lim()) {
 			int x = 0, y = 0;
-			for (auto i = 0; i <= 20; i++) {
+			for (auto i = 0; i <= m->get_lim(); i++) {
 				if (i == linha)
-					y = i + 18;
+					y = i;
 			}
-			for (auto i = 0; i <= 20; i++) {
+			for (auto i = 0; i <= m->get_lim(); i++) {
 				if (i == coluna)
-					x = i + 49;
+					x = i;
 			}
+
 			for (auto i = 0; i < m->get_comunidade().size(); i++)
 				m->get_comunidade().at(i)->mata_formiga(x, y);
 		}
@@ -421,34 +443,42 @@ bool Comandos::menu_simul(Mundo** ppcm, Mundo** ppm, Screen* s)const {
 
 		iss >> n;
 
+		m->elimina_comunidade(n);
+
+		break;
+
+	case 11: // listamundo
+		s->lista_mundo(ppm);
+		break;
+
+	case 12: // listaninho <N>
+		iss >> n;
+		s->lista_ninho(ppm, n);
+		break;
+
+	case 13: // listaposicao <linha>  <coluna>
+		iss >> linha;
+		iss >> coluna;
 		if (linha < m->get_lim() && coluna < m->get_lim()) {
 			int x = 0, y = 0;
-			for (auto i = 0; i <= 20; i++) {
+			for (auto i = 0; i <= m->get_lim(); i++) {
 				if (i == linha)
-					y = i + 18;
+					y = i;
 			}
-			for (auto i = 0; i <= 20; i++) {
+			for (auto i = 0; i <= m->get_lim(); i++) {
 				if (i == coluna)
-					x = i + 49;
+					x = i;
 			}
-			m->elimina_comunidade(n);
+			s->lista_posicao(ppm, x, y);
 		}
 		else
 		{
 			Consola::setTextColor(Consola::VERMELHO_CLARO);
 			Consola::gotoxy(45, 40);
-			cout << "Ninho nao existe!" << endl;
+			cout << "Posicao ultrapassa tamanho do mundo!" << endl;
 			Consola::setTextColor(Consola::BRANCO);
 		}
-		break;
-
-	case 11: // listamundo
-		break;
-
-	case 12: // listaninho <N>
-		break;
-
-	case 13: // listaposicao <linha>  <coluna>
+		
 		break;
 
 	case 14: // guarda <nome>

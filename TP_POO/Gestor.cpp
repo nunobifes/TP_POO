@@ -29,7 +29,7 @@ void Gestor::run() {
 			s.mostra_info(m);
 			if (c.menu_simul(&mc ,&m, &s))
 				ready = false;
-		}
+			}
 		//m = new Mundo(10, 1);
 	}
 }

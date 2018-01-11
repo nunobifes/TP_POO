@@ -46,6 +46,7 @@ public:
 	// FUNCOES
 	void anda();
 	void contr_energia(int ener);
+	string lista_info() const;
 
 };
 

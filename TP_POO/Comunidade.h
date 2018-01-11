@@ -46,6 +46,7 @@ public:
 	void add_formiga(int lim, char t, int x, int y);
 	void mata_formiga(int x, int y);
 	//void setFormiga(Formiga* form);
+	string lista_info() const;
 
 	~Comunidade();
 

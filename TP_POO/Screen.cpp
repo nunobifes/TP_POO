@@ -376,3 +376,117 @@ void Screen::intro_sim() {
 
 
 };
+
+void Screen::lista_mundo(Mundo** m)
+{
+	Consola::clrscr();
+	margens();
+	Mundo *mu = *m;
+	string info = mu->lista_info();
+	Consola::gotoxy(2, 13);
+	cout << info << endl;
+	for(auto i = 0; i < mu->get_comunidade().size(); i++)
+	{
+		info = mu->get_comunidade().at(i)->lista_info();
+		Consola::gotoxy(3, 16+i);
+		cout << "Comunidade-> " << info << endl;
+		info = mu->get_comunidade().at(i)->get_ninho()->lista_info();
+		Consola::gotoxy(50, 16+i);
+		cout <<" -- Ninho-> " << i+1 << ' ' << info << endl;
+		
+	}
+	
+	getchar();
+	Consola::clrscr();
+	margens();
+	intro_sim();
+	mostra_mapa(*m);
+	desenha(*m);
+}
+
+void Screen::lista_ninho(Mundo** m, int n)
+{
+	Consola::clrscr();
+	margens();
+
+	Mundo *mu = *m;
+	string info;
+
+	Comunidade *comu = mu->get_comunidade().at(n - 1);
+	info = comu->lista_info();
+	Consola::gotoxy(2, 16);
+	cout << "Ninho->" << info << endl;
+
+	for (auto j = 0; j < comu->get_formiga().size(); j++)
+	{
+		Formiga *f = comu->get_formiga().at(j);
+		Consola::gotoxy(6, 18 + j);
+		cout << "Ninho-> " << n << " Formiga: " << j + 1 << ' ' << f->lista_info() << endl;
+	}
+
+
+	getchar();
+	Consola::clrscr();
+	margens();
+	intro_sim();
+	mostra_mapa(*m);
+	desenha(*m);
+}
+
+void Screen::lista_posicao(Mundo** m, int x, int y)
+{
+	Consola::clrscr();
+	margens();
+
+	Mundo *mu = *m;
+	string info;
+	int flag = 0;
+
+	for(auto i = 0; i < mu->get_migalha().size(); i++)
+	{
+		if(x == mu->get_migalha().at(i)->get_posx() && y == mu->get_migalha().at(i)->get_posy())
+		{
+			info = mu->get_migalha().at(i)->lista_info();
+			Consola::clrscr();
+			margens();
+			Consola::gotoxy(2, 16);
+			cout << "Migalha-> " << info << endl;
+			flag = 1;
+		}
+	}
+
+	if (flag == 0) {
+		for (auto i = 0; i < mu->get_comunidade().size(); i++)
+		{
+
+			Comunidade *comu = mu->get_comunidade().at(i);
+			if (x == comu->get_ninho()->getPosX() && y == comu->get_ninho()->getPosY())
+			{
+				info = comu->get_ninho()->lista_info();
+				Consola::clrscr();
+				margens();
+				Consola::gotoxy(2, 16);
+				cout << "Ninho-> " << info << endl;
+			}
+			else {
+
+				for (auto j = 0; j < comu->get_formiga().size(); j++)
+				{
+					Formiga *f = comu->get_formiga().at(j);
+					info = f->lista_info();
+					Consola::clrscr();
+					margens();
+					Consola::gotoxy(2, 16);
+					cout << "Formiga-> " << info << endl;
+				}
+			}
+
+		}
+	}
+	getchar();
+	Consola::clrscr();
+	margens();
+	intro_sim();
+	mostra_mapa(*m);
+	desenha(*m);
+}

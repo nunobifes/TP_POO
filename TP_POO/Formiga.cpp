@@ -98,15 +98,8 @@ void Formiga::anda()
 	default:
 		break;
 	}
-
-
-
-
-
 	this->x = x;
 	this->y = y;
-
-
 }
 
 void Formiga::contr_energia(int ener)
@@ -114,4 +107,12 @@ void Formiga::contr_energia(int ener)
 	this->energia += ener;
 }
 
+string Formiga::lista_info() const
+{
+	string info;
+	ostringstream oss;
+	oss << "Tipo: " << this->tipo << " Energia: " << this->energia << " PosX: " << this->x << " PosY: " << this->y << endl;
+	info = oss.str();
 
+	return info;
+}

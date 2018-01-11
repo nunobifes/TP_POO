@@ -48,6 +48,9 @@ public:
 
 	int get_id() const;
 
+	void contr_energia(int ener);
+	string lista_info() const;
+
 	~Ninho();
 
 

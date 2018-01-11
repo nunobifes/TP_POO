@@ -99,6 +99,30 @@ string Mundo::get_nome() const
 	return nome;
 }
 
+void Mundo::add_energia_ninho(int n, int e)
+{
+	for(auto i = 0; i < co.size(); i++)
+	{
+		if(co.at(i)->get_ninho()->get_id() == n)
+			co.at(i)->get_ninho()->contr_energia(e);
+	}
+}
+
+void Mundo::add_energia_formiga(int x, int y, int e)
+{
+	for (auto i = 0; i < co.size(); i++)
+	{
+		Comunidade* c = co.at(i);
+		for(auto j = 0; j < c->get_formiga().size(); j++)
+		{
+			Formiga* f = c->get_formiga().at(j);
+			if (f->get_posX() == x && f->get_posY() == y)
+				f->contr_energia(e);
+		}
+		
+	}
+}
+
 // FUNCOES
 void Mundo::cria_comunidade()
 {
@@ -218,6 +242,17 @@ void Mundo::elimina_comunidade(int n)
 
 	}
 }
+
+string Mundo::lista_info() const
+{
+	string info;
+	ostringstream oss;
+	oss << "Nome: " << "Default" << " Num Comunidades: " << co.size() << " Num Migalhas " << mig.size() << endl;
+	info = oss.str();
+
+	return info;
+}
+
 
 // DESTRUTOR
 Mundo::~Mundo()
