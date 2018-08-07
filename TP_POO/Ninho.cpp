@@ -7,9 +7,11 @@
 
 //char Ninho::ident = 'N';
 
-Ninho::Ninho(int id, int e, int x, int y, Comunidade* c, Mundo* m)
-:id(id),energia(e), x(x), y(y), cn(c), mn(m)
+Ninho::Ninho(int id, int e, int x, int y, bool g, Comunidade* c, Mundo* m)
+:id(id),energia(e), x(x), y(y), guerra(g), cn(c), mn(m)
 {
+
+	e_base = energia;
 	
 	//cerr << "id: " << id << " energia: " << energia << " posx: " << this->x << " posy: " << this->y << endl;
 }
@@ -33,6 +35,11 @@ void Ninho::setPosX(int x) {
 	this->x = x;
 }
 
+void Ninho::setGuerra(bool g)
+{
+	this->guerra = g;
+}
+
 void Ninho::setPosY(int y) {
 	this->y = y;
 }
@@ -42,6 +49,16 @@ int Ninho::get_id() const
 	return id;
 }
 
+bool Ninho::get_guerra() const
+{
+	return guerra;
+}
+
+int Ninho::get_energia_b() const
+{
+	return e_base;
+}
+
 
 void Ninho::contr_energia(int ener)
 {
@@ -49,11 +66,13 @@ void Ninho::contr_energia(int ener)
 }
 
 
+
+
 string Ninho::lista_info() const
 {
 	string info;
 	ostringstream oss;
-	oss << "Energia: " << this->energia << " PosX: " << this->x << " PosY: " << this->y << endl;
+	oss << "Energia: " << this->energia << " PosX: " << this->x << " PosY: " << this->y << " Guerra: " << this->guerra << endl;
 	info = oss.str();
 
 	return info;
@@ -63,5 +82,8 @@ string Ninho::lista_info() const
 
 
 Ninho::~Ninho() {
+
+	delete cn;
+	delete mn;
 
 }

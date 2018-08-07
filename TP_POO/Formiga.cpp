@@ -1,10 +1,12 @@
 #include "Formiga.h"
+#include "Mundo.h"
 
 // CONSTRUTOR
 Formiga::Formiga(int e, int rv, int rm, char t, int x, int y, int lim)
 	:energia(e), r_visao(rv), r_mov(rm), tipo(t), x(x), y(y), lim_m(lim)
 {
 	//set_formiga();
+	e_base = energia;
 }
 
 
@@ -37,6 +39,10 @@ int Formiga::get_posY() const
 int Formiga::get_energia() const
 {
 	return  energia;
+}
+int Formiga::get_energiab() const
+{
+	return  e_base;
 }
 int Formiga::get_visao() const
 {
@@ -105,6 +111,22 @@ void Formiga::anda()
 void Formiga::contr_energia(int ener)
 {
 	this->energia += ener;
+}
+
+void Formiga::comeu_migalha(Mundo *m)
+{
+
+	
+
+	for(auto i = 0; i < m->get_migalha().size(); i++)
+	{
+		if((m->get_migalha().at(i)->get_posx() == get_posX()) && (m->get_migalha().at(i)->get_posy() == get_posY()))
+		{
+			m->get_migalha().erase(m->get_migalha().begin() + i);
+			contr_energia(m->get_m_e_inical());
+		}
+	}
+	
 }
 
 string Formiga::lista_info() const

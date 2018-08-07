@@ -1,7 +1,6 @@
 #include "Mundo.h"
 
 
-
 // CONSTRUTOR
 Mundo::Mundo(int l, int et)
 	: lim_max(l), energia_transf(et)
@@ -181,10 +180,43 @@ void Mundo::avanca_tempo(int vezes)
 			for (auto j = 0; j < comu->get_formiga().size(); j++)
 			{
 				Formiga* form = comu->get_formiga().at(j);
-				form->anda();
+				Ninho* n = comu->get_ninho();
+
+				if (form->get_posX() == n->getPosX() && form->get_posY() == n->getPosY())
+				{
+					if (form->get_energia() < (form->get_energiab()*0.5))
+					{
+						if(n->getEnergia() > n->get_energia_b())
+						{
+							n->contr_energia(-(this->energia_transf));
+							form->contr_energia(this->energia_transf);
+						}else
+						{
+							form->anda();
+						}
+
+
+					}
+					else if (form->get_energia() > form->get_energiab())
+					{
+						n->contr_energia(this->energia_transf);
+						form->contr_energia(-(this->energia_transf));
+
+					}
+					else
+					{
+						form->anda();
+					}
+				}else if(n->getEnergia() > (n->get_energia_b() + this->perc_energia))
+				{
+					comu->add_formiga(this->lim_max, 0, n->getPosX(), n->getPosY());
+					n->contr_energia(-(this->perc_energia));
+				}
+				
 				// se energia for menor ou igual a 0
 				if (form->get_energia() <= 0)
 					comu->mata_formiga(form->get_posX(), form->get_posY());
+				
 				
 			}
 			
@@ -196,17 +228,28 @@ void Mundo::avanca_tempo(int vezes)
 	
 }
 
+void Mundo::modo_guerra(bool g, int n)
+{
+	for(auto i = 0; i < get_comunidade().size(); i++)
+	{
+		Comunidade *c = get_comunidade().at(i);
+		if (c->get_id() == n)
+			c->modo_guerra(g);
+	}
+}
+
 void Mundo::comeu_migalha()
 {
 	for (auto i = 0; i < get_comunidade().size(); i++)
 	{
 		Comunidade* c = get_comunidade().at(i);
+		//c->comeu_migalha(this->mig);
 		for(auto j = 0; j < c->get_formiga().size(); j++)
 		{
 			Formiga* f = c->get_formiga().at(j);
 			for(auto k = 0; k < get_migalha().size(); k++)
 			{
-				mig.at(k);
+				//mig.at(k);
 				if((mig.at(k)->get_posx() == f->get_posX()) && (mig.at(k)->get_posy() == f->get_posY()))
 				{
 					mig.erase(mig.begin() + k);
@@ -257,8 +300,10 @@ string Mundo::lista_info() const
 // DESTRUTOR
 Mundo::~Mundo()
 {
-	co.clear();
-	mig.clear();
-	cor.clear();
+	for (auto i = 0; i < co.size(); i++)
+		delete co[i];
+
+	for (auto i = 0; i < mig.size(); i++)
+		delete mig[i];
 	
 }

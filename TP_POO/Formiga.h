@@ -10,7 +10,7 @@
 #include <vector>
 
 
-
+class Mundo;
 
 using namespace std;
 
@@ -22,6 +22,7 @@ class Formiga {
 	int r_mov;
 	int x, y;
 	int lim_m;
+	int e_base;
 	//Variação de energica, só com as migalhas
 
 public:
@@ -39,6 +40,7 @@ public:
 	int get_posX() const;
 	int get_posY() const;
 	int get_energia() const;
+	int get_energiab() const;
 	int get_visao() const;
 	int get_move() const;
 	
@@ -46,6 +48,7 @@ public:
 	// FUNCOES
 	void anda();
 	void contr_energia(int ener);
+	void comeu_migalha(Mundo * m);
 	string lista_info() const;
 
 };

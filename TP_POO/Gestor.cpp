@@ -26,7 +26,6 @@ void Gestor::run() {
 			s.intro_sim();
 			s.mostra_mapa(m);
 			s.desenha(m);
-			s.mostra_info(m);
 			if (c.menu_simul(&mc ,&m, &s))
 				ready = false;
 			}
@@ -36,4 +35,6 @@ void Gestor::run() {
 
 Gestor::~Gestor()
 {
+	delete m;
+	delete mc;
 }

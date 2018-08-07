@@ -44,7 +44,9 @@ public:
 	//void setNinho(Ninho* ni);
 	static void reset_id();
 	void add_formiga(int lim, char t, int x, int y);
+	void modo_guerra(bool g);
 	void mata_formiga(int x, int y);
+	//void comeu_migalha(Mundo* m);
 	//void setFormiga(Formiga* form);
 	string lista_info() const;
 

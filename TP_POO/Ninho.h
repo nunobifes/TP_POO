@@ -22,11 +22,13 @@ class Ninho {
 	Mundo* mn;
 	int id;						// Atraves do id do ninho a formiga sabe a que ninho pertence....
 	int energia;
+	int e_base;
 	int x, y;
+	bool guerra;
 
 public:
 
-	Ninho(int id, int e, int x, int y, Comunidade* c, Mundo* m);
+	Ninho(int id, int e, int x, int y, bool g, Comunidade* c, Mundo* m);
 
 
 
@@ -43,12 +45,18 @@ public:
 	void setEnergia(int e);
 	void setId(int e);
 	void setPosX(int x);
+	void setGuerra(bool g);
 	void setPosY(int y);
 
 
 	int get_id() const;
 
+	bool get_guerra() const;
+
+	int get_energia_b() const;
+
 	void contr_energia(int ener);
+	void ModoGuerra();
 	string lista_info() const;
 
 	~Ninho();

@@ -61,6 +61,7 @@ public:
 	void add_energia_formiga(int x, int y, int e);
 	void cria_comunidade();
 	void avanca_tempo(int vezes);
+	void modo_guerra(bool g, int n);
 	void cria_migalha(int x, int y);
 	void comeu_migalha();
 	void preenche_cor_vector();

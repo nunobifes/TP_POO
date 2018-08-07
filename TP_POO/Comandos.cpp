@@ -437,9 +437,22 @@ bool Comandos::menu_simul(Mundo** ppcm, Mundo** ppm, Screen* s)const {
 			Consola::setTextColor(Consola::BRANCO);
 		}
 		break;
-		
+	case 10:	// ninho entrar em guerra
+		iss >> n;
 
-	case 10: // inseticida <N>
+		m->modo_guerra(true, n);
+		break;
+
+	case 11:	// ninho entrar em paz
+		iss >> n;
+
+		m->modo_guerra(false, n);
+		break;
+
+	case 12:	// gerir formigas Soldado
+		break;
+
+	case 13: // inseticida <N>
 
 		iss >> n;
 
@@ -447,16 +460,16 @@ bool Comandos::menu_simul(Mundo** ppcm, Mundo** ppm, Screen* s)const {
 
 		break;
 
-	case 11: // listamundo
+	case 14: // listamundo
 		s->lista_mundo(ppm);
 		break;
 
-	case 12: // listaninho <N>
+	case 15: // listaninho <N>
 		iss >> n;
 		s->lista_ninho(ppm, n);
 		break;
 
-	case 13: // listaposicao <linha>  <coluna>
+	case 16: // listaposicao <linha>  <coluna>
 		iss >> linha;
 		iss >> coluna;
 		if (linha < m->get_lim() && coluna < m->get_lim()) {
@@ -481,22 +494,22 @@ bool Comandos::menu_simul(Mundo** ppcm, Mundo** ppm, Screen* s)const {
 		
 		break;
 
-	case 14: // guarda <nome>
+	/*case 17: // guarda <nome>		\\ Nada funciona
 		iss >> nome;
 		m->set_nome(nome);
 		*ppcm = new Mundo(*m);
 		break;
 
-	case 15: // muda <nome>
+	case 18: // muda <nome>
 		delete m;
 		*ppm = *ppcm;
 		m = *ppm;
 		break;
 
-	case 16: // apaga <nome>
-		break;
+	case 19: // apaga <nome>
+		break;*/
 
-	case 17: // sair
+	case 20: // sair
 		
 		Comunidade::reset_id();
 		//m->get_comunidade().at((m->get_comunidade().size() - 1))->reset_id();

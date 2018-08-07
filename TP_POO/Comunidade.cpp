@@ -1,5 +1,6 @@
 #include "Comunidade.h"
 #include "Formiga_Tipo.h"
+#include "Consola.h"
 
 int Comunidade::conta = 1;
 
@@ -7,8 +8,7 @@ Comunidade::Comunidade(Mundo* m, int cor)
 	:cor(cor)
 {
 	id = conta++;
-	ni = new Ninho(id, m->get_energia_ninho(), m->get_posx_ninho(), m->get_posy_ninho(), this, m);
-	
+	ni = new Ninho(id, m->get_energia_ninho(), m->get_posx_ninho(), m->get_posy_ninho(), false ,this, m);
 }
 
 
@@ -90,6 +90,25 @@ void Comunidade::add_formiga(int lim, char t, int x, int y)
 	
 }
 
+
+void Comunidade::modo_guerra(bool g)
+{
+	
+	if (ni->get_guerra() == g)
+	{
+		Consola::setTextColor(Consola::VERMELHO);
+		Consola::gotoxy(2, 13);
+		cout << "Ninho ja se encontra no modo pretendido!" << endl;
+		Consola::setTextColor(Consola::BRANCO);
+	}
+	else if (g)
+		ni->setGuerra(g);
+	else if (!g)
+		ni->setGuerra(g);
+	else
+		;
+}
+
 void Comunidade::mata_formiga(int x, int y)
 {
 	for (auto i = 0; i < form.size(); i++)
@@ -100,6 +119,17 @@ void Comunidade::mata_formiga(int x, int y)
 		}
 	}
 }
+
+/*void Comunidade::comeu_migalha()
+{
+	
+	for (auto i = 0; i<get_formiga().size(); i++)
+	{
+		Formiga * f = get_formiga().at(i);
+		f->comeu_migalha();
+
+	}
+}*/
 
 string Comunidade::lista_info() const
 {
@@ -114,5 +144,7 @@ string Comunidade::lista_info() const
 
 Comunidade::~Comunidade()
 {
-	form.clear();
+	//delete ni;
+	for (auto i = 0; i < form.size(); i++)
+		delete form[i];
 }

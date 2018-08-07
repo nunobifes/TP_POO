@@ -57,22 +57,28 @@ int Screen::cmd_sim_op(string s) {
 		op = 8;
 	else if (!s.compare("mata"))
 		op = 9;
-	else if (!s.compare("inseticida"))
+	else if (!s.compare("ninhog"))
 		op = 10;
-	else if (!s.compare("listamundo"))
+	else if (!s.compare("ninhop"))
 		op = 11;
-	else if (!s.compare("listaninho"))
+	else if (!s.compare("geresold"))
 		op = 12;
-	else if (!s.compare("listaposicao"))
+	else if (!s.compare("inseticida"))
 		op = 13;
-	else if (!s.compare("guarda"))
+	else if (!s.compare("listamundo"))
 		op = 14;
-	else if (!s.compare("muda"))
+	else if (!s.compare("listaninho"))
 		op = 15;
-	else if (!s.compare("apaga"))
+	else if (!s.compare("listaposicao"))
 		op = 16;
-	else if (!s.compare("sair"))
+	else if (!s.compare("guarda"))
 		op = 17;
+	else if (!s.compare("muda"))
+		op = 18;
+	else if (!s.compare("apaga"))
+		op = 19;
+	else if (!s.compare("sair"))
+		op = 20;
 	return op;
 }
 
@@ -341,23 +347,26 @@ void Screen::intro_sim() {
 	Consola::gotoxy(120, 34);	cout << " -energformiga";
 	Consola::gotoxy(120, 35);	cout << " -mata";
 	Consola::gotoxy(120, 36);	cout << " -inseticida";
-	Consola::gotoxy(120, 37);	cout << " -listamundo";
-	Consola::gotoxy(120, 38);	cout << " -listaninho";
-	Consola::gotoxy(120, 39);	cout << " -listaposicao";
-	Consola::gotoxy(120, 40);	cout << " -guarda";
-	Consola::gotoxy(120, 41);	cout << " -muda";
-	Consola::gotoxy(120, 42);	cout << " -apaga";
-	Consola::gotoxy(120, 43);	cout << " -sair";
+	Consola::gotoxy(120, 37);	cout << " -ninhog";
+	Consola::gotoxy(120, 38);	cout << " -ninhop";
+	Consola::gotoxy(120, 39);	cout << " -geresold";
+	Consola::gotoxy(120, 40);	cout << " -listamundo";
+	Consola::gotoxy(120, 41);	cout << " -listaninho";
+	Consola::gotoxy(120, 42);	cout << " -listaposicao";
+	Consola::gotoxy(120, 43);	cout << " -guarda";
+	Consola::gotoxy(120, 44);	cout << " -muda";
+	Consola::gotoxy(120, 45);	cout << " -apaga";
+	Consola::gotoxy(120, 46);	cout << " -sair";
 
 
 	Consola::setTextColor(Consola::BRANCO);
 	for (int a = 118; a < 136; a++) {
 		Consola::gotoxy(a, 25);
 		cout << (char)205;
-		Consola::gotoxy(a, 44);
+		Consola::gotoxy(a, 47);
 		cout << (char)205;
 	}
-	for (int a = 26; a < 44; a++) {
+	for (int a = 26; a < 47; a++) {
 		Consola::gotoxy(118, a);
 		cout << (char)186;
 		Consola::gotoxy(135, a);
@@ -368,9 +377,9 @@ void Screen::intro_sim() {
 	cout << (char)201;
 	Consola::gotoxy(135, 25);
 	cout << (char)187;
-	Consola::gotoxy(118, 44);
+	Consola::gotoxy(118, 47);
 	cout << (char)200;
-	Consola::gotoxy(135, 44);
+	Consola::gotoxy(135, 47);
 	cout << (char)188;
 
 
