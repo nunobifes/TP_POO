@@ -182,15 +182,21 @@ void Mundo::avanca_tempo(int vezes)
 				Formiga* form = comu->get_formiga().at(j);
 				Ninho* n = comu->get_ninho();
 
-				if (form->get_posX() == n->getPosX() && form->get_posY() == n->getPosY())
+				if (n->getEnergia() >(n->get_energia_b() + this->perc_energia))
+				{
+					comu->add_formiga(this->lim_max, 0, n->getPosX(), n->getPosY());
+					n->contr_energia(-(this->perc_energia));
+				}
+				else if (form->get_posX() == n->getPosX() && form->get_posY() == n->getPosY())
 				{
 					if (form->get_energia() < (form->get_energiab()*0.5))
 					{
-						if(n->getEnergia() > n->get_energia_b())
+						if (n->getEnergia() > n->get_energia_b())
 						{
 							n->contr_energia(-(this->energia_transf));
 							form->contr_energia(this->energia_transf);
-						}else
+						}
+						else
 						{
 							form->anda();
 						}
@@ -207,10 +213,6 @@ void Mundo::avanca_tempo(int vezes)
 					{
 						form->anda();
 					}
-				}else if(n->getEnergia() > (n->get_energia_b() + this->perc_energia))
-				{
-					comu->add_formiga(this->lim_max, 0, n->getPosX(), n->getPosY());
-					n->contr_energia(-(this->perc_energia));
 				}
 				
 				// se energia for menor ou igual a 0
