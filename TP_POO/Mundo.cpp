@@ -187,7 +187,7 @@ void Mundo::avanca_tempo(int vezes)
 					comu->add_formiga(this->lim_max, 0, n->getPosX(), n->getPosY());
 					n->contr_energia(-(this->perc_energia));
 				}
-				else if (form->get_posX() == n->getPosX() && form->get_posY() == n->getPosY())
+				if (form->get_posX() == n->getPosX() && form->get_posY() == n->getPosY())
 				{
 					if (form->get_energia() < (form->get_energiab()*0.5))
 					{
@@ -209,10 +209,14 @@ void Mundo::avanca_tempo(int vezes)
 						form->contr_energia(-(this->energia_transf));
 
 					}
-					else
-					{
+					else {
 						form->anda();
 					}
+					
+				}
+				else
+				{
+					form->anda();
 				}
 				
 				// se energia for menor ou igual a 0
