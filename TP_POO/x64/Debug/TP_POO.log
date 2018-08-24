@@ -1,2 +1,27 @@
-﻿  Mundo.cpp
-  TP_POO.vcxproj -> D:\Trabalhos\TP_POO\x64\Debug\TP_POO.exe
+﻿  Screen.cpp
+  RegraVaiParaNinho.cpp
+  RegraVaiPara.cpp
+  RegraProtegida.cpp
+  RegraProtege.cpp
+  RegraProcuraMigalha.cpp
+  RegraPersegue.cpp
+  RegraPasseia.cpp
+  RegraFoge.cpp
+  RegraComeMigalha.cpp
+  RegraAtacaInimigas.cpp
+  RegraAssalta.cpp
+  Regra.cpp
+  Principal.cpp
+e:\daniela\documents\isec\faculdade17-18\1 semestre\poo 1718\especial\tp_poo\tp_poo\principal.cpp(18): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Ninho.cpp
+  Mundo.cpp
+  Migalha.cpp
+  Gestor.cpp
+  Formiga.cpp
+  Consola.cpp
+  Generating Code...
+  Compiling...
+  Comunidade.cpp
+  Comandos.cpp
+  Generating Code...
+  TP_POO.vcxproj -> E:\Daniela\Documents\ISEC\Faculdade17-18\1 Semestre\POO 1718\Especial\TP_POO\x64\Debug\TP_POO.exe

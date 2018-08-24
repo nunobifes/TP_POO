@@ -52,7 +52,7 @@ public:
 
 	~Comunidade();
 
-	/// skfçokfgdsmofgd
+
 
 };
 #endif

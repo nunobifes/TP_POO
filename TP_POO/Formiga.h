@@ -23,6 +23,7 @@ class Formiga {
 	int x, y;
 	int lim_m;
 	int e_base;
+	int e;
 	//Variação de energica, só com as migalhas
 
 public:
@@ -34,6 +35,7 @@ public:
 	void set_tipo(char t);
 	void set_posX(int x);
 	void set_posY(int y);
+	void set_energia(int e);
 
 	// GET'S
 	char get_tipo() const;

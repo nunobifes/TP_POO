@@ -149,6 +149,17 @@
     <ClInclude Include="Mundo.h" />
     <ClInclude Include="Ninho.h" />
     <ClInclude Include="Regra.h" />
+    <ClInclude Include="RegraAssaltada.h" />
+    <ClInclude Include="RegraAtacaInimigas.h" />
+    <ClInclude Include="RegraComeMigalha.h" />
+    <ClInclude Include="RegraFoge.h" />
+    <ClInclude Include="RegraPasseia.h" />
+    <ClInclude Include="RegraPersegue.h" />
+    <ClInclude Include="RegraProcuraMigalha.h" />
+    <ClInclude Include="RegraProtege.h" />
+    <ClInclude Include="RegraProtegida.h" />
+    <ClInclude Include="RegraVaiPara.h" />
+    <ClInclude Include="RegraVaiParaNinho.h" />
     <ClInclude Include="Screen.h" />
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +173,17 @@
     <ClCompile Include="Ninho.cpp" />
     <ClCompile Include="Principal.cpp" />
     <ClCompile Include="Regra.cpp" />
+    <ClCompile Include="RegraAssalta.cpp" />
+    <ClCompile Include="RegraAtacaInimigas.cpp" />
+    <ClCompile Include="RegraComeMigalha.cpp" />
+    <ClCompile Include="RegraFoge.cpp" />
+    <ClCompile Include="RegraPasseia.cpp" />
+    <ClCompile Include="RegraPersegue.cpp" />
+    <ClCompile Include="RegraProcuraMigalha.cpp" />
+    <ClCompile Include="RegraProtege.cpp" />
+    <ClCompile Include="RegraProtegida.cpp" />
+    <ClCompile Include="RegraVaiPara.cpp" />
+    <ClCompile Include="RegraVaiParaNinho.cpp" />
     <ClCompile Include="Screen.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

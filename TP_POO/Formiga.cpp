@@ -22,6 +22,11 @@ void Formiga::set_posY(int y) {
 	this->y = y;
 }
 
+void Formiga::set_energia(int e)
+{
+	this->e = e;
+}
+
 
 // GET'S
 char Formiga::get_tipo() const
