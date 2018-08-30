@@ -273,8 +273,8 @@ void Mundo::comeu_migalha()
 	for (auto i = 0; i < get_comunidade().size(); i++)
 	{
 		Comunidade* c = get_comunidade().at(i);
-		c->comeu_migalha(this);
-		/*for(auto j = 0; j < c->get_formiga().size(); j++)
+		//c->comeu_migalha(this);
+		for(auto j = 0; j < c->get_formiga().size(); j++)
 		{
 			Formiga* f = c->get_formiga().at(j);
 			for(auto k = 0; k < get_migalha().size(); k++)
@@ -286,7 +286,7 @@ void Mundo::comeu_migalha()
 					f->contr_energia(m_e_inicial);
 				}
 			}
-		}*/
+		}
 	}
 	
 }

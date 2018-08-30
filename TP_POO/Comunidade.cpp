@@ -133,7 +133,7 @@ void Comunidade::mata_formiga(int x, int y)
 	}
 }
 
-void Comunidade::comeu_migalha(Mundo * m)
+/*void Comunidade::comeu_migalha(Mundo * m)
 {
 	
 	for (auto i = 0; i<get_formiga().size(); i++)
@@ -149,7 +149,7 @@ void Comunidade::comeu_migalha(Mundo * m)
 		}
 
 	}
-}
+}*/
 
 string Comunidade::lista_info() const
 {
