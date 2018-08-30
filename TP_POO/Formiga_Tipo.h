@@ -38,6 +38,16 @@ public:
 	}
 };
 
+class Soldado : public Formiga
+{
+public:
+	Soldado(int x, int y, int lim)
+		:Formiga(80, 8, 4, 'A', x, y, lim)
+	{
+
+	}
+};
+
 
 class Exploradora : public Formiga
 {
@@ -51,7 +61,7 @@ class Surpresa : public Formiga
 {
 public:
 	Surpresa(int x, int y, int lim)
-		:Formiga(0, 0, 0, 'S', x, y, lim)
+		:Formiga(0, 0, 0, 'P', x, y, lim)
 		{}
 };
 

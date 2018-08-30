@@ -12,6 +12,19 @@ Comunidade::Comunidade(Mundo* m, int cor)
 }
 
 
+Comunidade::Comunidade(Comunidade& c)
+{
+	cor = c.cor;
+	id = c.id;
+	ni = new Ninho(*c.ni);
+	for(auto i = 0; i < c.form.size(); i++)
+	{
+		Formiga *formi = new Formiga(*c.form.at(i));
+		form.push_back(formi);
+	}
+	conta = c.conta;
+}
+
 int Comunidade::get_cor() const
 {
 	return cor;
@@ -120,16 +133,23 @@ void Comunidade::mata_formiga(int x, int y)
 	}
 }
 
-/*void Comunidade::comeu_migalha()
+void Comunidade::comeu_migalha(Mundo * m)
 {
 	
 	for (auto i = 0; i<get_formiga().size(); i++)
 	{
 		Formiga * f = get_formiga().at(i);
-		f->comeu_migalha();
+		for (auto j = 0; j < m->get_migalha().size(); j++)
+		{
+			if ((m->get_migalha().at(j)->get_posx() == f->get_posX()) && (m->get_migalha().at(j)->get_posy() == f->get_posY()))
+			{
+				m->get_migalha().erase(m->get_migalha().begin() + j);
+				f->contr_energia(m->get_m_e_inical());
+			}
+		}
 
 	}
-}*/
+}
 
 string Comunidade::lista_info() const
 {

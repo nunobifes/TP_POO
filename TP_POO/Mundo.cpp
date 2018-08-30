@@ -11,6 +11,28 @@ Mundo::Mundo(int l, int et)
 
 Mundo::Mundo(Mundo& m)
 {
+	for(auto i = 0; i < m.cconta; i++)
+	{
+		Comunidade *com = new Comunidade(*m.co.at(i));
+		co.push_back(com);
+	}
+	for(auto i = 0; i <m.mig.size(); i++)
+	{
+		Migalha *mi = new Migalha(*m.mig.at(i));
+		mig.push_back(mi);
+	}
+
+	cor = m.cor;
+	cconta = m.cconta;
+	energia_ninho = m.energia_ninho;
+	perc_energia = m.perc_energia;
+	energia_transf = m.energia_transf;
+	m_e_inicial = m.m_e_inicial;
+	m_per_inicial = m.m_per_inicial;
+	m_max = m.m_max;
+	nome = m.nome;
+	lim_max = m.lim_max;
+	
 }
 
 
@@ -54,6 +76,8 @@ void Mundo::set_nome(string n)
 {
 	this->nome = n;
 }
+
+
 
 // GET'S
 int Mundo::get_lim() const
@@ -249,8 +273,8 @@ void Mundo::comeu_migalha()
 	for (auto i = 0; i < get_comunidade().size(); i++)
 	{
 		Comunidade* c = get_comunidade().at(i);
-		//c->comeu_migalha(this->mig);
-		for(auto j = 0; j < c->get_formiga().size(); j++)
+		c->comeu_migalha(this);
+		/*for(auto j = 0; j < c->get_formiga().size(); j++)
 		{
 			Formiga* f = c->get_formiga().at(j);
 			for(auto k = 0; k < get_migalha().size(); k++)
@@ -262,7 +286,7 @@ void Mundo::comeu_migalha()
 					f->contr_energia(m_e_inicial);
 				}
 			}
-		}
+		}*/
 	}
 	
 }

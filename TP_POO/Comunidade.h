@@ -30,6 +30,7 @@ class Comunidade {
 
 public:
 	Comunidade(Mundo* m, int cor);
+	Comunidade(Comunidade& c);
 	//Comunidade(Ninho *id, Ninho *cor);
 
 	
@@ -46,7 +47,7 @@ public:
 	void add_formiga(int lim, char t, int x, int y);
 	void modo_guerra(bool g);
 	void mata_formiga(int x, int y);
-	//void comeu_migalha(Mundo* m);
+	void comeu_migalha(Mundo* m);
 	//void setFormiga(Formiga* form);
 	string lista_info() const;
 

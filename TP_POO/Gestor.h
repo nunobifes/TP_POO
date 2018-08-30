@@ -15,7 +15,7 @@
 
 class Gestor {
 	Mundo * m;
-	Mundo* mc;
+	vector <Mundo *> saves;
 	Comandos c;
 	Screen s;
 	

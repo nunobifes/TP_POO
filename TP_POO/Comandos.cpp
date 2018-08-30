@@ -255,9 +255,8 @@ bool Comandos::menu_config(Mundo* m, Screen* s)const {
 	return false;
 }
 
-bool Comandos::menu_simul(Mundo** ppcm, Mundo** ppm, Screen* s)const {
+bool Comandos::menu_simul(vector <Mundo*> *saves, Mundo** ppm, Screen* s)const {
 	Mundo * m = *ppm;
-	Mundo * mc = *ppcm;
 	Consola::gotoxy(2, 47);
 	cout << "Comando de simulacao: ";
 	getline(cin, comando);
@@ -494,20 +493,45 @@ bool Comandos::menu_simul(Mundo** ppcm, Mundo** ppm, Screen* s)const {
 		
 		break;
 
-	/*case 17: // guarda <nome>		\\ Nada funciona
+	case 17: { // guarda <nome>		\\ Nada funciona
 		iss >> nome;
-		m->set_nome(nome);
-		*ppcm = new Mundo(*m);
+		auto *sav = new Mundo(*m);
+		sav->set_nome(nome);
+		saves->push_back(sav);
+	}
 		break;
 
 	case 18: // muda <nome>
-		delete m;
-		*ppm = *ppcm;
-		m = *ppm;
+		iss >> nome;
+		for(auto i = 0; i < saves->size(); i++)
+		{
+			if(saves->at(i)->get_nome() == nome)
+			{
+				delete m;
+
+				*ppm = new Mundo(*saves->at(i));
+				m = *ppm;
+			}
+			else
+			{
+				Consola::setTextColor(Consola::VERMELHO_CLARO);
+				Consola::gotoxy(45, 40);
+				cout << "Esse Mundo não existe!" << endl;
+				Consola::setTextColor(Consola::BRANCO);
+			}
+		}
+		Consola::clrscr();
 		break;
 
 	case 19: // apaga <nome>
-		break;*/
+		iss >> nome;
+		for (auto i = 0; i < saves->size(); i++)
+			if (saves->at(i)->get_nome() == nome)
+			{
+				saves->erase(saves->begin() + i);
+			}
+				
+		break;
 
 	case 20: // sair
 		

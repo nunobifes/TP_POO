@@ -16,6 +16,18 @@ Ninho::Ninho(int id, int e, int x, int y, bool g, Comunidade* c, Mundo* m)
 	//cerr << "id: " << id << " energia: " << energia << " posx: " << this->x << " posy: " << this->y << endl;
 }
 
+Ninho::Ninho(Ninho& n)
+{
+	id = n.id;
+	energia = n.energia;
+	x = n.x;
+	y = n.y;
+	guerra = n.guerra;
+	cn = n.cn;
+	mn = n.mn;
+	e_base = n.e_base;
+}
+
 void Ninho::set_comunid(Comunidade* c)
 {
 	this->cn = c;

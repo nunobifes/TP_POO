@@ -9,6 +9,17 @@ Formiga::Formiga(int e, int rv, int rm, char t, int x, int y, int lim)
 	e_base = energia;
 }
 
+Formiga::Formiga(Formiga& f)
+{
+	energia = f.energia;
+	r_visao = f.r_visao;
+	r_mov = f.r_mov;
+	tipo = f.tipo;
+	x = f.x;
+	y = f.y;
+	lim_m = f.lim_m;
+	e_base = f.e_base;
+}
 
 // SET'S
 void Formiga::set_tipo(char t)
@@ -118,14 +129,7 @@ void Formiga::comeu_migalha(Mundo *m)
 
 	
 
-	for(auto i = 0; i < m->get_migalha().size(); i++)
-	{
-		if((m->get_migalha().at(i)->get_posx() == get_posX()) && (m->get_migalha().at(i)->get_posy() == get_posY()))
-		{
-			m->get_migalha().erase(m->get_migalha().begin() + i);
-			contr_energia(m->get_m_e_inical());
-		}
-	}
+	
 	
 }
 

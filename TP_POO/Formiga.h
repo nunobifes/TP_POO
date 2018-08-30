@@ -29,7 +29,8 @@ public:
 	
 	// CONSTRUTOR
 	Formiga(int e, int rv, int rm, char t, int x, int y, int lim);
-		
+	Formiga(Formiga& f);
+
 	// SET'S
 	void set_tipo(char t);
 	void set_posX(int x);

@@ -30,6 +30,8 @@ public:
 
 	Ninho(int id, int e, int x, int y, bool g, Comunidade* c, Mundo* m);
 
+	Ninho(Ninho & n);
+
 
 
 
