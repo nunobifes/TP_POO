@@ -9,8 +9,8 @@
 class Cuidadora : public Formiga
 {
 public:
-	Cuidadora(int x, int y, int lim)
-		:Formiga(100, 5, 3, 'C', x, y, lim)
+	Cuidadora(int x, int y, int lim, int id)
+		:Formiga(100, 5, 3, 'C', x, y, lim, id)
 	{
 		
 	}
@@ -20,8 +20,8 @@ public:
 class Vigilante : public Formiga
 {
 public:
-	Vigilante(int x, int y, int lim)
-		:Formiga(150, 7, 5, 'V', x, y, lim)
+	Vigilante(int x, int y, int lim, int id)
+		:Formiga(150, 7, 5, 'V', x, y, lim, id)
 	{
 		
 	}
@@ -31,8 +31,8 @@ public:
 class Assaltante : public Formiga
 {
 public:
-	Assaltante(int x, int y, int lim)
-		:Formiga(80, 8, 4, 'A', x, y, lim)
+	Assaltante(int x, int y, int lim, int id)
+		:Formiga(80, 8, 4, 'A', x, y, lim, id)
 	{
 		
 	}
@@ -42,16 +42,16 @@ public:
 class Exploradora : public Formiga
 {
 public:
-	Exploradora(int x, int y, int lim)
-		:Formiga(200, 10, 8, 'E', x, y, lim)
+	Exploradora(int x, int y, int lim, int id)
+		:Formiga(200, 10, 8, 'E', x, y, lim, id)
 		{}
 };
 
 class Surpresa : public Formiga
 {
 public:
-	Surpresa(int x, int y, int lim)
-		:Formiga(0, 0, 0, 'S', x, y, lim)
+	Surpresa(int x, int y, int lim, int id)
+		:Formiga(0, 0, 0, 'S', x, y, lim, id)
 		{}
 };
 

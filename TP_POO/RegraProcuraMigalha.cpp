@@ -11,8 +11,25 @@ RegraProcuraMigalha::~RegraProcuraMigalha()
 
 bool RegraProcuraMigalha::verificaCondicao(Mundo * m, Comunidade * cm, Formiga * form)
 {
-	//Em falta....
-	return false;
+	Migalha *miga;
+	int raio_visao = form->get_visao();
+
+	int vxs = form->get_posX() + raio_visao;
+	int vys = form->get_posY() + raio_visao;
+
+	int vxi = form->get_posX() - raio_visao;
+	int vyi = form->get_posY() - raio_visao;
+
+	for (int i = 0; i < raio_visao; i++)
+	{
+		Migalha * mig = m->get_migalha().at(i);
+
+		if (mig->get_posx() != vxs + i && mig->get_posy() != vys + i)
+			if (mig->get_posx() != vxi - i && mig->get_posy() != vyi - i)
+				if (mig->get_posx() != vxs + i && mig->get_posy() != vyi - i)
+					if (mig->get_posx() != vxi - i && mig->get_posy() != vys + i)
+						return false;
+	}
 }
 
 void RegraProcuraMigalha::Accao(Mundo * m, Comunidade * cm, Formiga * form) const

@@ -24,12 +24,13 @@ class Formiga {
 	int lim_m;
 	int e_base;
 	int e;
+	int c_id;
 	//Variação de energica, só com as migalhas
 
 public:
 	
 	// CONSTRUTOR
-	Formiga(int e, int rv, int rm, char t, int x, int y, int lim);
+	Formiga(int e, int rv, int rm, char t, int x, int y, int lim, int c_id);
 		
 	// SET'S
 	void set_tipo(char t);
@@ -45,6 +46,8 @@ public:
 	int get_energiab() const;
 	int get_visao() const;
 	int get_move() const;
+
+	int get_id() const;
 	
 
 	// FUNCOES

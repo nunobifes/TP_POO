@@ -1,27 +1,19 @@
-﻿  Screen.cpp
-  RegraVaiParaNinho.cpp
+﻿  RegraVaiParaNinho.cpp
   RegraVaiPara.cpp
-  RegraProtegida.cpp
-  RegraProtege.cpp
   RegraProcuraMigalha.cpp
-  RegraPersegue.cpp
-  RegraPasseia.cpp
+e:\daniela\documents\isec\faculdade17-18\1 semestre\poo 1718\especial\tp_poo\tp_poo\regraprocuramigalha.cpp(14): warning C4101: 'miga': unreferenced local variable
+  Formiga.cpp
+  Comunidade.cpp
+  Generating Code...
+e:\daniela\documents\isec\faculdade17-18\1 semestre\poo 1718\especial\tp_poo\tp_poo\regraprocuramigalha.cpp(33): warning C4715: 'RegraProcuraMigalha::verificaCondicao': not all control paths return a value
+e:\daniela\documents\isec\faculdade17-18\1 semestre\poo 1718\especial\tp_poo\tp_poo\regravaipara.cpp(33): warning C4715: 'RegraVaiPara::verificaCondicao': not all control paths return a value
+  Skipping... (no relevant changes detected)
+  Screen.cpp
   RegraFoge.cpp
   RegraComeMigalha.cpp
-  RegraAtacaInimigas.cpp
-  RegraAssalta.cpp
-  Regra.cpp
   Principal.cpp
-e:\daniela\documents\isec\faculdade17-18\1 semestre\poo 1718\especial\tp_poo\tp_poo\principal.cpp(18): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   Ninho.cpp
   Mundo.cpp
-  Migalha.cpp
   Gestor.cpp
-  Formiga.cpp
-  Consola.cpp
-  Generating Code...
-  Compiling...
-  Comunidade.cpp
   Comandos.cpp
-  Generating Code...
   TP_POO.vcxproj -> E:\Daniela\Documents\ISEC\Faculdade17-18\1 Semestre\POO 1718\Especial\TP_POO\x64\Debug\TP_POO.exe

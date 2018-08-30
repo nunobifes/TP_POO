@@ -33,16 +33,16 @@ void Comunidade::add_formiga(int lim, char t, int x, int y)
 	{
 		Formiga* fo;
 		if (t == 'C') {
-			fo = new Cuidadora(x, y, lim);
+			fo = new Cuidadora(x, y, lim, id);
 		}
 		else if (t == 'V') {
-			fo = new Vigilante(x, y, lim);
+			fo = new Vigilante(x, y, lim, id);
 		}
 		else if (t == 'A') {
-			fo = new Assaltante(x, y, lim);
+			fo = new Assaltante(x, y, lim, id);
 		}
 		else if (t == 'E') {
-			fo = new Exploradora(x, y, lim);
+			fo = new Exploradora(x, y, lim, id);
 		}
 		
 
@@ -66,19 +66,19 @@ void Comunidade::add_formiga(int lim, char t, int x, int y)
 		switch(randT)
 		{
 		case 0:
-			fo = new Cuidadora(ni->getPosX(), ni->getPosY(), lim);
+			fo = new Cuidadora(ni->getPosX(), ni->getPosY(), lim, id);
 			form.push_back(fo);
 			break;
 		case 1:
-			fo = new Vigilante(ni->getPosX(), ni->getPosY(), lim);
+			fo = new Vigilante(ni->getPosX(), ni->getPosY(), lim, id);
 			form.push_back(fo);
 			break;
 		case 2:
-			fo = new Assaltante(ni->getPosX(), ni->getPosY(), lim);
+			fo = new Assaltante(ni->getPosX(), ni->getPosY(), lim, id);
 			form.push_back(fo);
 			break;
 		case 3:
-			fo = new Exploradora(ni->getPosX(), ni->getPosY(), lim);
+			fo = new Exploradora(ni->getPosX(), ni->getPosY(), lim, id);
 			form.push_back(fo);
 			break;
 		default:

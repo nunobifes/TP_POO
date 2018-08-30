@@ -2,8 +2,8 @@
 #include "Mundo.h"
 
 // CONSTRUTOR
-Formiga::Formiga(int e, int rv, int rm, char t, int x, int y, int lim)
-	:energia(e), r_visao(rv), r_mov(rm), tipo(t), x(x), y(y), lim_m(lim)
+Formiga::Formiga(int e, int rv, int rm, char t, int x, int y, int lim, int id)
+	:energia(e), r_visao(rv), r_mov(rm), tipo(t), x(x), y(y), lim_m(lim), c_id(id)
 {
 	//set_formiga();
 	e_base = energia;
@@ -56,6 +56,11 @@ int Formiga::get_visao() const
 int Formiga::get_move() const
 {
 	return r_mov;
+}
+
+int Formiga::get_id()const
+{
+	return c_id;
 }
 
 // FUNCOES
