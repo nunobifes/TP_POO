@@ -14,6 +14,8 @@ class Mundo;
 
 using namespace std;
 
+class Regra;
+
 class Formiga {
 
 	char tipo;
@@ -25,7 +27,8 @@ class Formiga {
 	int e_base;
 	int e;
 	int c_id;
-	//Variação de energica, só com as migalhas
+
+	vector<Regra*> reg;
 
 public:
 	

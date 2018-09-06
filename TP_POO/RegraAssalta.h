@@ -1,11 +1,12 @@
 #pragma once
+
 #include "Regra.h"
 
-class RegraPersegue : public Regra
+class RegraAssalta : public Regra
 {
 public:
-	RegraPersegue();
-	~RegraPersegue();
+	RegraAssalta();
+	~RegraAssalta();
 
 	bool verificaCondicao(Mundo *m, Comunidade *cm, Formiga *form);
 	void Accao(Mundo *m, Comunidade *cm, Formiga *form) const;

@@ -72,9 +72,6 @@
     <ClInclude Include="RegraPersegue.h">
       <Filter>Header Files\Aplicação\Regras_Tipo</Filter>
     </ClInclude>
-    <ClInclude Include="RegraAssaltada.h">
-      <Filter>Header Files\Aplicação\Regras_Tipo</Filter>
-    </ClInclude>
     <ClInclude Include="RegraProtege.h">
       <Filter>Header Files\Aplicação\Regras_Tipo</Filter>
     </ClInclude>
@@ -97,6 +94,9 @@
       <Filter>Header Files\Aplicação\Regras_Tipo</Filter>
     </ClInclude>
     <ClInclude Include="RegraAtacaInimigas.h">
+      <Filter>Header Files\Aplicação\Regras_Tipo</Filter>
+    </ClInclude>
+    <ClInclude Include="RegraAssalta.h">
       <Filter>Header Files\Aplicação\Regras_Tipo</Filter>
     </ClInclude>
   </ItemGroup>

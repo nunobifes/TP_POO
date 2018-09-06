@@ -1,4 +1,4 @@
-#ifndef __TIPO__
+	#ifndef __TIPO__
 #define __TIPO__
 #include <string>
 #include <iostream>

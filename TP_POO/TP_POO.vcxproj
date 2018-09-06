@@ -149,7 +149,7 @@
     <ClInclude Include="Mundo.h" />
     <ClInclude Include="Ninho.h" />
     <ClInclude Include="Regra.h" />
-    <ClInclude Include="RegraAssaltada.h" />
+    <ClInclude Include="RegraAssalta.h" />
     <ClInclude Include="RegraAtacaInimigas.h" />
     <ClInclude Include="RegraComeMigalha.h" />
     <ClInclude Include="RegraFoge.h" />
