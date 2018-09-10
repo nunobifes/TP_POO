@@ -10,11 +10,16 @@ RegraAtacaInimigas::~RegraAtacaInimigas()
 {
 }
 
-bool RegraAtacaInimigas::verificaCondicao(Mundo * m, Comunidade * cm, Formiga * form)
+bool RegraAtacaInimigas::verificaCondicao(Mundo * m, Formiga * form)
 {
 	return false;
 }
 
-void RegraAtacaInimigas::Accao(Mundo * m, Comunidade * cm, Formiga * form) const
+void RegraAtacaInimigas::Accao(Mundo * m, Formiga * form)
 {
+}
+
+Regra * RegraAtacaInimigas::duplica() const
+{
+	return new RegraAtacaInimigas(*this);
 }

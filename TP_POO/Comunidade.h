@@ -30,6 +30,7 @@ class Comunidade {
 
 public:
 	Comunidade(Mundo* m, int cor);
+	Comunidade(Comunidade& c);
 	//Comunidade(Ninho *id, Ninho *cor);
 
 	

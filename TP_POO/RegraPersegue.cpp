@@ -9,11 +9,16 @@ RegraPersegue::~RegraPersegue()
 {
 }
 
-bool RegraPersegue::verificaCondicao(Mundo * m, Comunidade * cm, Formiga * form)
+bool RegraPersegue::verificaCondicao(Mundo * m, Formiga * form)
 {
 	return false;
 }
 
-void RegraPersegue::Accao(Mundo * m, Comunidade * cm, Formiga * form) const
+void RegraPersegue::Accao(Mundo * m, Formiga * form)
 {
+}
+
+Regra * RegraPersegue::duplica() const
+{
+	return new RegraPersegue(*this);
 }

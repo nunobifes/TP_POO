@@ -1,5 +1,6 @@
 #include "Formiga.h"
 #include "Mundo.h"
+#include "RegraAssalta.h"
 
 // CONSTRUTOR
 Formiga::Formiga(int e, int rv, int rm, char t, int x, int y, int lim, int id)
@@ -7,6 +8,30 @@ Formiga::Formiga(int e, int rv, int rm, char t, int x, int y, int lim, int id)
 {
 	//set_formiga();
 	e_base = energia;
+	
+	
+}
+
+
+Formiga&Formiga::operator=(const Formiga& f)		
+{
+	
+	// Terminar
+
+
+	energia = f.energia;
+	r_visao = f.r_visao;
+	r_mov = f.r_mov;
+	tipo = f.tipo;
+	x = f.x;
+	y = f.y;
+	lim_m = f.lim_m;
+	e_base = f.e_base;
+}
+
+Formiga* Formiga::duplica() const
+{
+	return new Formiga(*this);
 }
 
 
@@ -64,9 +89,23 @@ int Formiga::get_id()const
 }
 
 // FUNCOES
-void Formiga::anda()
+void Formiga::anda(Mundo *m)
 {
-	
+
+	for(auto i = 0; i < reg.size(); i++)
+	{
+		if(reg.at(i)->verificaCondicao(m ,this) == true)
+		{
+			reg.at(i)->Accao(m, this);
+			if (reg.at(i)->get_continua() != true)
+				break;
+
+		}
+
+	}
+
+
+	/*
 	int x = this->x; 
 	int y = this->y;
 	
@@ -116,6 +155,7 @@ void Formiga::anda()
 	}
 	this->x = x;
 	this->y = y;
+	*/
 }
 
 void Formiga::contr_energia(int ener)

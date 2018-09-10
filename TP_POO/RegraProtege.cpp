@@ -8,11 +8,16 @@ RegraProtege::~RegraProtege()
 {
 }
 
-bool RegraProtege::verificaCondicao(Mundo * m, Comunidade * cm, Formiga * form)
+bool RegraProtege::verificaCondicao(Mundo * m, Formiga * form)
 {
 	return false;
 }
 
-void RegraProtege::Accao(Mundo * m, Comunidade * cm, Formiga * form) const
+void RegraProtege::Accao(Mundo * m, Formiga * form)
 {
+}
+
+Regra * RegraProtege::duplica() const
+{
+	return new RegraProtege(*this);
 }

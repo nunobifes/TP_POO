@@ -7,8 +7,8 @@ public:
 	RegraPasseia();
 	~RegraPasseia();
 
-	bool verificaCondicao(Mundo *m, Comunidade *cm, Formiga *form);
-	void Accao(Mundo *m, Comunidade *cm, Formiga *form) const;
+	virtual bool verificaCondicao(Mundo *m, Formiga *form);
+	virtual void Accao(Mundo *m, Formiga *form);
 
-	
+	virtual Regra* duplica() const override;
 };

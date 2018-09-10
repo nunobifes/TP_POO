@@ -28,13 +28,19 @@ class Formiga {
 	int e;
 	int c_id;
 
+protected: 
 	vector<Regra*> reg;
 
 public:
 	
 	// CONSTRUTOR
 	Formiga(int e, int rv, int rm, char t, int x, int y, int lim, int c_id);
-		
+	//Formiga(const Formiga& f);
+
+	Formiga &operator=(const Formiga &f);
+
+	virtual Formiga* duplica() const;
+
 	// SET'S
 	void set_tipo(char t);
 	void set_posX(int x);
@@ -54,7 +60,7 @@ public:
 	
 
 	// FUNCOES
-	void anda();
+	void anda(Mundo *m);
 	void contr_energia(int ener);
 	void comeu_migalha(Mundo * m);
 	string lista_info() const;

@@ -11,6 +11,18 @@ Comunidade::Comunidade(Mundo* m, int cor)
 	ni = new Ninho(id, m->get_energia_ninho(), m->get_posx_ninho(), m->get_posy_ninho(), false ,this, m);
 }
 
+Comunidade::Comunidade(Comunidade& c)
+{
+	cor = c.cor;
+	id = c.id;
+	ni = new Ninho(*c.ni);
+	for (auto i = 0; i < c.form.size(); i++)
+	{
+		Formiga *formi = c.form.at(i)->duplica();
+		form.push_back(formi);
+	}
+	conta = c.conta;
+}
 
 int Comunidade::get_cor() const
 {

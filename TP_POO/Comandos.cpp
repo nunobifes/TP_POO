@@ -21,7 +21,7 @@ string nome, comando;
 
 bool Comandos::menu_config(Mundo* m, Screen* s)const {
 
-	// "Menu" inicial de configuração 
+	// "Menu" inicial de configuraï¿½ï¿½o 
 	
 
 	Consola::gotoxy(2, 47);
@@ -81,7 +81,7 @@ bool Comandos::menu_config(Mundo* m, Screen* s)const {
 
 		Consola::setTextColor(Consola::VERDE);
 		Consola::gotoxy(2, 13);
-		cout << "Percentagem definida para criação de uma formiga: ";
+		cout << "Percentagem definida para criaï¿½ï¿½o de uma formiga: ";
 		Consola::setTextColor(Consola::AZUL_CLARO);
 		cout << energia_perc << '%' << endl;
 		Consola::setTextColor(Consola::BRANCO);
@@ -92,7 +92,7 @@ bool Comandos::menu_config(Mundo* m, Screen* s)const {
 
 		Consola::setTextColor(Consola::VERDE);
 		Consola::gotoxy(2, 13);
-		cout << "Energia transferida por iteração: ";
+		cout << "Energia transferida por iteraï¿½ï¿½o: ";
 		Consola::setTextColor(Consola::AZUL_CLARO);
 		cout << energia_transf << endl;
 		Consola::setTextColor(Consola::BRANCO);
@@ -139,7 +139,7 @@ bool Comandos::menu_config(Mundo* m, Screen* s)const {
 			Consola::gotoxy(2, 13);
 			cout << "ERRO!" << endl;
 			Consola::setTextColor(Consola::BRANCO);
-			cout << "  Não se pode começar a jogar sem: " << endl;
+			cout << "  Nï¿½o se pode comeï¿½ar a jogar sem: " << endl;
 			if (flagTam == 0)
 				cout << "   -Defenir o tamanho do mapa;" << endl;
 			if (flagEnerg == 0)
@@ -255,9 +255,8 @@ bool Comandos::menu_config(Mundo* m, Screen* s)const {
 	return false;
 }
 
-bool Comandos::menu_simul(Mundo** ppcm, Mundo** ppm, Screen* s)const {
+bool Comandos::menu_simul(vector <Mundo*> *saves, Mundo** ppm, Screen* s)const {
 	Mundo * m = *ppm;
-	Mundo * mc = *ppcm;
 	Consola::gotoxy(2, 47);
 	cout << "Comando de simulacao: ";
 	getline(cin, comando);
@@ -294,7 +293,7 @@ bool Comandos::menu_simul(Mundo** ppcm, Mundo** ppm, Screen* s)const {
 		{
 			Consola::setTextColor(Consola::VERMELHO_CLARO);
 			Consola::gotoxy(45, 40);
-			cout << "Posição ultrapassa tamanho do mundo!" << endl;
+			cout << "Posiï¿½ï¿½o ultrapassa tamanho do mundo!" << endl;
 			Consola::setTextColor(Consola::BRANCO);
 		}
 		break;
@@ -346,7 +345,7 @@ bool Comandos::menu_simul(Mundo** ppcm, Mundo** ppm, Screen* s)const {
 		{
 			Consola::setTextColor(Consola::VERMELHO_CLARO);
 			Consola::gotoxy(45, 40);
-			cout << "Posição ultrapassa tamanho do mundo!" << endl;
+			cout << "Posiï¿½ï¿½o ultrapassa tamanho do mundo!" << endl;
 			Consola::setTextColor(Consola::BRANCO);
 		}
 		break;
@@ -370,7 +369,7 @@ bool Comandos::menu_simul(Mundo** ppcm, Mundo** ppm, Screen* s)const {
 		{
 			Consola::setTextColor(Consola::VERMELHO_CLARO);
 			Consola::gotoxy(45, 40);
-			cout << "Posição ultrapassa tamanho do mundo!" << endl;
+			cout << "Posiï¿½ï¿½o ultrapassa tamanho do mundo!" << endl;
 			Consola::setTextColor(Consola::BRANCO);
 		}
 		
@@ -494,20 +493,46 @@ bool Comandos::menu_simul(Mundo** ppcm, Mundo** ppm, Screen* s)const {
 		
 		break;
 
-	/*case 17: // guarda <nome>		\\ Nada funciona
+	case 17: { // guarda <nome>		\\ Nada funciona
 		iss >> nome;
-		m->set_nome(nome);
-		*ppcm = new Mundo(*m);
+		auto *sav = new Mundo(*m);
+		sav->set_nome(nome);
+		saves->push_back(sav);
+	}
 		break;
 
 	case 18: // muda <nome>
-		delete m;
-		*ppm = *ppcm;
-		m = *ppm;
+		iss >> nome;
+		for(auto i = 0; i < saves->size(); i++)
+		{
+			if(saves->at(i)->get_nome() == nome)
+			{
+				delete m;
+
+				*ppm = new Mundo(*saves->at(i));
+				m = *ppm;
+			}
+			else
+			{
+				Consola::setTextColor(Consola::VERMELHO_CLARO);
+				Consola::gotoxy(45, 40);
+				cout << "Esse Mundo nï¿½o existe!" << endl;
+				Consola::setTextColor(Consola::BRANCO);
+			}
+		}
+		Consola::clrscr();
 		break;
 
 	case 19: // apaga <nome>
-		break;*/
+		iss >> nome;
+		for (auto i = 0; i < saves->size(); i++)
+			if (saves->at(i)->get_nome() == nome)
+			{
+				saves->erase(saves->begin() + i);
+			}
+				
+		break;
+
 
 	case 20: // sair
 		
@@ -515,7 +540,7 @@ bool Comandos::menu_simul(Mundo** ppcm, Mundo** ppm, Screen* s)const {
 		//m->get_comunidade().at((m->get_comunidade().size() - 1))->reset_id();
 		delete m;
 		*ppm = new Mundo(10, 1);
-		m = *ppm; // para o caso de usar m daqui a bocado nesta função
+		m = *ppm; // para o caso de usar m daqui a bocado nesta funï¿½ï¿½o
 		flagEnerg = 0, flagTam = 0, flagPerc = 0, flagMEnerg = 0, flagMPerc = 0, flagMMax = 0;
 		linhas = 0, energia = 0, energia_perc = 0, energia_transf = 0, per_miga = 0, energia_miga = 0, max_miga = 0, linha = 0, coluna = 0, n = 0, f = 0, vezes = 0;
 		return true;

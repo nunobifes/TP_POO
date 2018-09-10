@@ -29,11 +29,9 @@ class Ninho {
 public:
 
 	Ninho(int id, int e, int x, int y, bool g, Comunidade* c, Mundo* m);
+	Ninho(Ninho& n);
 
 
-
-
-	
 	int getEnergia() const { return energia; }
 	int getPosX() { return x; }
 	int getPosY() { return y; }

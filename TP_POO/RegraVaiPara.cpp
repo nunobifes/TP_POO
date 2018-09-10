@@ -9,7 +9,7 @@ RegraVaiPara::~RegraVaiPara()
 {
 }
 
-bool RegraVaiPara::verificaCondicao(Mundo * m, Comunidade * cm, Formiga * form)
+bool RegraVaiPara::verificaCondicao(Mundo * m, Formiga * form)
 {
 	int raio_visao = form->get_visao();
 
@@ -30,9 +30,15 @@ bool RegraVaiPara::verificaCondicao(Mundo * m, Comunidade * cm, Formiga * form)
 						return false;
 
 	}
+	return true;
 }
 
-void RegraVaiPara::Accao(Mundo * m, Comunidade * cm, Formiga * form) const
+void RegraVaiPara::Accao(Mundo * m, Formiga * form)
 {
 
+}
+
+Regra * RegraVaiPara::duplica() const
+{
+	return new RegraVaiPara(*this);
 }

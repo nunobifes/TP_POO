@@ -9,7 +9,12 @@ RegraVaiParaNinho::~RegraVaiParaNinho()
 {
 }
 
-bool RegraVaiParaNinho::verificaCondicao(Mundo * m, Comunidade * cm, Formiga * form)
+Regra * RegraVaiParaNinho::duplica() const
+{
+	return new RegraVaiParaNinho(*this);
+}
+
+bool RegraVaiParaNinho::verificaCondicao(Mundo * m, Formiga * form)
 {	
 	int raio_visao = form->get_visao();
 
@@ -38,7 +43,7 @@ bool RegraVaiParaNinho::verificaCondicao(Mundo * m, Comunidade * cm, Formiga * f
 		return false;
 }
 
-void RegraVaiParaNinho::Accao(Mundo * m, Comunidade * cm, Formiga * form) const
+void RegraVaiParaNinho::Accao(Mundo * m, Formiga * form)
 {
 	int x = ni->getPosX();
 	int y = ni->getPosY();

@@ -9,11 +9,23 @@ RegraAssalta::~RegraAssalta()
 {
 }
 
-bool RegraAssalta::verificaCondicao(Mundo * m, Comunidade * cm, Formiga * form)
+bool RegraAssalta::verificaCondicao(Mundo * m, Formiga * form)
 {
 	return false;
 }
 
-void RegraAssalta::Accao(Mundo * m, Comunidade * cm, Formiga * form) const
+void RegraAssalta::Accao(Mundo * m, Formiga * form) 
 {
 }
+
+Regra * RegraAssalta::duplica() const 
+{
+	return new RegraAssalta(*this);
+}
+
+
+
+
+
+
+

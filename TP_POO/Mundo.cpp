@@ -11,8 +11,50 @@ Mundo::Mundo(int l, int et)
 
 Mundo::Mundo(Mundo& m)
 {
+
+	*this = m;
+	
 }
 
+Mundo&Mundo::operator=(const Mundo& m)
+{
+	if (this == &m)
+		return *this;
+
+	for (auto i : co)
+		delete i;
+	co.clear();
+
+	for (auto i : mig)
+		delete i;
+	mig.clear();
+
+	for (auto i = 0; i < m.cconta; i++)
+	{
+		Comunidade *com = new Comunidade(*m.co.at(i));
+		co.push_back(com);
+	}
+	for (auto i = 0; i <m.mig.size(); i++)
+	{
+		Migalha *mi = new Migalha(*m.mig.at(i));
+		mig.push_back(mi);
+	}
+
+	cor = m.cor;
+	cconta = m.cconta;
+	energia_ninho = m.energia_ninho;
+	perc_energia = m.perc_energia;
+	energia_transf = m.energia_transf;
+	m_e_inicial = m.m_e_inicial;
+	m_per_inicial = m.m_per_inicial;
+	m_max = m.m_max;
+	nome = m.nome;
+	lim_max = m.lim_max;
+
+
+	return *this;
+	
+}
 
 // SET'S
 void Mundo::setLim(int l)
@@ -182,7 +224,8 @@ void Mundo::avanca_tempo(int vezes)
 				Formiga* form = comu->get_formiga().at(j);
 				Ninho* n = comu->get_ninho();
 
-				if (form->get_posX() == n->getPosX() && form->get_posY() == n->getPosY())
+				form->anda(this);
+				/*if (form->get_posX() == n->getPosX() && form->get_posY() == n->getPosY())
 				{
 					if (form->get_energia() < (form->get_energiab()*0.5))
 					{
@@ -192,7 +235,7 @@ void Mundo::avanca_tempo(int vezes)
 							form->contr_energia(this->energia_transf);
 						}else
 						{
-							form->anda();
+							form->anda(this);
 						}
 
 
@@ -205,13 +248,13 @@ void Mundo::avanca_tempo(int vezes)
 					}
 					else
 					{
-						form->anda();
+						form->anda(this);
 					}
 				}else if(n->getEnergia() > (n->get_energia_b() + this->perc_energia))
 				{
 					comu->add_formiga(this->lim_max, 0, n->getPosX(), n->getPosY());
 					n->contr_energia(-(this->perc_energia));
-				}
+				}*/
 				
 				// se energia for menor ou igual a 0
 				if (form->get_energia() <= 0)

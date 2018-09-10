@@ -26,15 +26,16 @@ void Gestor::run() {
 			s.intro_sim();
 			s.mostra_mapa(m);
 			s.desenha(m);
-			if (c.menu_simul(&mc ,&m, &s))
+			if (c.menu_simul(&saves ,&m, &s))
 				ready = false;
 			}
-		//m = new Mundo(10, 1);
+		
 	}
 }
 
 Gestor::~Gestor()
 {
 	delete m;
-	delete mc;
+	for (auto i = 0; i < saves.size(); i++)
+		delete saves[i];
 }

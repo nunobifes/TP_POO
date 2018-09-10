@@ -10,10 +10,10 @@ public:
 
 	~RegraProcuraMigalha();
 
-	virtual bool verificaCondicao(Mundo *m, Comunidade *cm, Formiga *form);
-	void Accao(Mundo *m, Comunidade *cm, Formiga *form)const;
+	virtual bool verificaCondicao(Mundo *m, Formiga *form);
+	virtual void Accao(Mundo *m, Formiga *form);
 
-	//Duplica?
+	virtual Regra* duplica() const override;
 
 	
 

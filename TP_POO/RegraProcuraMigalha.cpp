@@ -9,9 +9,9 @@ RegraProcuraMigalha::~RegraProcuraMigalha()
 {
 }
 
-bool RegraProcuraMigalha::verificaCondicao(Mundo * m, Comunidade * cm, Formiga * form)
+bool RegraProcuraMigalha::verificaCondicao(Mundo * m, Formiga * form)
 {
-	Migalha *miga;
+	//Migalha *miga;
 	int raio_visao = form->get_visao();
 
 	int vxs = form->get_posX() + raio_visao;
@@ -22,6 +22,7 @@ bool RegraProcuraMigalha::verificaCondicao(Mundo * m, Comunidade * cm, Formiga *
 
 	for (int i = 0; i < raio_visao; i++)
 	{
+		
 		Migalha * mig = m->get_migalha().at(i);
 
 		if (mig->get_posx() != vxs + i && mig->get_posy() != vys + i)
@@ -29,12 +30,14 @@ bool RegraProcuraMigalha::verificaCondicao(Mundo * m, Comunidade * cm, Formiga *
 				if (mig->get_posx() != vxs + i && mig->get_posy() != vyi - i)
 					if (mig->get_posx() != vxi - i && mig->get_posy() != vys + i)
 						return false;
+
 	}
+	return true;
 }
 
-void RegraProcuraMigalha::Accao(Mundo * m, Comunidade * cm, Formiga * form) const
+void RegraProcuraMigalha::Accao(Mundo * m, Formiga * form)
 {
-	int x = mig->get_posx();
+	/*int x = mig->get_posx();
 	int y = mig->get_posy();
 
 	if (mig->get_posx() > form->get_posX())
@@ -57,9 +60,14 @@ void RegraProcuraMigalha::Accao(Mundo * m, Comunidade * cm, Formiga * form) cons
 			}
 
 		}
-	}
+	}*/
 }
 
-//Duplica....
+Regra * RegraProcuraMigalha::duplica() const
+{
+	return new RegraProcuraMigalha(*this);
+}
+
+
 
 
