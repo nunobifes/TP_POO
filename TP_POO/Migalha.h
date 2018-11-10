@@ -20,6 +20,8 @@ public:
 	
 	Migalha(int e, int x, int y);
 
+	Migalha(Migalha & mig);
+
 	void set_energia(int e);
 	void set_posx(int x);
 	void set_posy(int y);

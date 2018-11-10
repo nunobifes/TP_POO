@@ -19,7 +19,7 @@ class Comandos
 public:
 	bool menu_config(Mundo* m, Screen* s)const;
 
-	bool menu_simul(Mundo** ppcm, Mundo** ppm, Screen* s)const;
+	bool menu_simul(vector <Mundo*> *saves, Mundo** ppm, Screen* s)const;
 	
 };
 

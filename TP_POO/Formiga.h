@@ -14,6 +14,8 @@ class Mundo;
 
 using namespace std;
 
+class Regra;
+
 class Formiga {
 
 	char tipo;
@@ -23,17 +25,27 @@ class Formiga {
 	int x, y;
 	int lim_m;
 	int e_base;
-	//Variação de energica, só com as migalhas
+	int e;
+	int c_id;
+
+protected: 
+	vector<Regra*> reg;
 
 public:
 	
 	// CONSTRUTOR
-	Formiga(int e, int rv, int rm, char t, int x, int y, int lim);
-		
+	Formiga(int e, int rv, int rm, char t, int x, int y, int lim, int c_id);
+	//Formiga(const Formiga& f);
+
+	Formiga &operator=(const Formiga &f);
+
+	virtual Formiga* duplica() const;
+
 	// SET'S
 	void set_tipo(char t);
 	void set_posX(int x);
 	void set_posY(int y);
+	void set_energia(int e);
 
 	// GET'S
 	char get_tipo() const;
@@ -43,10 +55,12 @@ public:
 	int get_energiab() const;
 	int get_visao() const;
 	int get_move() const;
+
+	int get_id() const;
 	
 
 	// FUNCOES
-	void anda();
+	void anda(Mundo *m);
 	void contr_energia(int ener);
 	void comeu_migalha(Mundo * m);
 	string lista_info() const;

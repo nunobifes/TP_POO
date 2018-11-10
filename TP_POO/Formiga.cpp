@@ -1,12 +1,37 @@
 #include "Formiga.h"
 #include "Mundo.h"
+#include "RegraAssalta.h"
 
 // CONSTRUTOR
-Formiga::Formiga(int e, int rv, int rm, char t, int x, int y, int lim)
-	:energia(e), r_visao(rv), r_mov(rm), tipo(t), x(x), y(y), lim_m(lim)
+Formiga::Formiga(int e, int rv, int rm, char t, int x, int y, int lim, int id)
+	:energia(e), r_visao(rv), r_mov(rm), tipo(t), x(x), y(y), lim_m(lim), c_id(id)
 {
 	//set_formiga();
 	e_base = energia;
+	
+	
+}
+
+
+Formiga&Formiga::operator=(const Formiga& f)		
+{
+	
+	// Terminar
+
+
+	energia = f.energia;
+	r_visao = f.r_visao;
+	r_mov = f.r_mov;
+	tipo = f.tipo;
+	x = f.x;
+	y = f.y;
+	lim_m = f.lim_m;
+	e_base = f.e_base;
+}
+
+Formiga* Formiga::duplica() const
+{
+	return new Formiga(*this);
 }
 
 
@@ -20,6 +45,11 @@ void Formiga::set_posX(int x) {
 }
 void Formiga::set_posY(int y) {
 	this->y = y;
+}
+
+void Formiga::set_energia(int e)
+{
+	this->e = e;
 }
 
 
@@ -53,10 +83,29 @@ int Formiga::get_move() const
 	return r_mov;
 }
 
-// FUNCOES
-void Formiga::anda()
+int Formiga::get_id()const
 {
-	
+	return c_id;
+}
+
+// FUNCOES
+void Formiga::anda(Mundo *m)
+{
+
+	for(auto i = 0; i < reg.size(); i++)
+	{
+		if(reg.at(i)->verificaCondicao(m ,this) == true)
+		{
+			reg.at(i)->Accao(m, this);
+			if (reg.at(i)->get_continua() != true)
+				break;
+
+		}
+
+	}
+
+
+	/*
 	int x = this->x; 
 	int y = this->y;
 	
@@ -106,6 +155,7 @@ void Formiga::anda()
 	}
 	this->x = x;
 	this->y = y;
+	*/
 }
 
 void Formiga::contr_energia(int ener)

@@ -25,6 +25,12 @@
     <Filter Include="Source Files\Aplicação">
       <UniqueIdentifier>{d572b959-5bde-4b1f-8390-84441834ea37}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Aplicação\Regras_Tipo">
+      <UniqueIdentifier>{2d688bab-5965-4e05-928e-2e04d4f9d322}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Aplicação\Regras_Tipo">
+      <UniqueIdentifier>{c60c2289-117d-4619-a806-1bdc6cfe03b4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gestor.h">
@@ -60,6 +66,39 @@
     <ClInclude Include="Formiga_Tipo.h">
       <Filter>Header Files\Aplicação</Filter>
     </ClInclude>
+    <ClInclude Include="RegraFoge.h">
+      <Filter>Header Files\Aplicação\Regras_Tipo</Filter>
+    </ClInclude>
+    <ClInclude Include="RegraPersegue.h">
+      <Filter>Header Files\Aplicação\Regras_Tipo</Filter>
+    </ClInclude>
+    <ClInclude Include="RegraProtege.h">
+      <Filter>Header Files\Aplicação\Regras_Tipo</Filter>
+    </ClInclude>
+    <ClInclude Include="RegraProcuraMigalha.h">
+      <Filter>Header Files\Aplicação\Regras_Tipo</Filter>
+    </ClInclude>
+    <ClInclude Include="RegraComeMigalha.h">
+      <Filter>Header Files\Aplicação\Regras_Tipo</Filter>
+    </ClInclude>
+    <ClInclude Include="RegraVaiParaNinho.h">
+      <Filter>Header Files\Aplicação\Regras_Tipo</Filter>
+    </ClInclude>
+    <ClInclude Include="RegraPasseia.h">
+      <Filter>Header Files\Aplicação\Regras_Tipo</Filter>
+    </ClInclude>
+    <ClInclude Include="RegraVaiPara.h">
+      <Filter>Header Files\Aplicação\Regras_Tipo</Filter>
+    </ClInclude>
+    <ClInclude Include="RegraProtegida.h">
+      <Filter>Header Files\Aplicação\Regras_Tipo</Filter>
+    </ClInclude>
+    <ClInclude Include="RegraAtacaInimigas.h">
+      <Filter>Header Files\Aplicação\Regras_Tipo</Filter>
+    </ClInclude>
+    <ClInclude Include="RegraAssalta.h">
+      <Filter>Header Files\Aplicação\Regras_Tipo</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Principal.cpp">
@@ -94,6 +133,39 @@
     </ClCompile>
     <ClCompile Include="Regra.cpp">
       <Filter>Source Files\Aplicação</Filter>
+    </ClCompile>
+    <ClCompile Include="RegraFoge.cpp">
+      <Filter>Source Files\Aplicação\Regras_Tipo</Filter>
+    </ClCompile>
+    <ClCompile Include="RegraPersegue.cpp">
+      <Filter>Source Files\Aplicação\Regras_Tipo</Filter>
+    </ClCompile>
+    <ClCompile Include="RegraAssalta.cpp">
+      <Filter>Source Files\Aplicação\Regras_Tipo</Filter>
+    </ClCompile>
+    <ClCompile Include="RegraProtege.cpp">
+      <Filter>Source Files\Aplicação\Regras_Tipo</Filter>
+    </ClCompile>
+    <ClCompile Include="RegraProcuraMigalha.cpp">
+      <Filter>Source Files\Aplicação\Regras_Tipo</Filter>
+    </ClCompile>
+    <ClCompile Include="RegraComeMigalha.cpp">
+      <Filter>Source Files\Aplicação\Regras_Tipo</Filter>
+    </ClCompile>
+    <ClCompile Include="RegraVaiParaNinho.cpp">
+      <Filter>Source Files\Aplicação\Regras_Tipo</Filter>
+    </ClCompile>
+    <ClCompile Include="RegraPasseia.cpp">
+      <Filter>Source Files\Aplicação\Regras_Tipo</Filter>
+    </ClCompile>
+    <ClCompile Include="RegraVaiPara.cpp">
+      <Filter>Source Files\Aplicação\Regras_Tipo</Filter>
+    </ClCompile>
+    <ClCompile Include="RegraProtegida.cpp">
+      <Filter>Source Files\Aplicação\Regras_Tipo</Filter>
+    </ClCompile>
+    <ClCompile Include="RegraAtacaInimigas.cpp">
+      <Filter>Source Files\Aplicação\Regras_Tipo</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

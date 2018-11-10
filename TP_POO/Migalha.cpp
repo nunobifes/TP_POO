@@ -5,6 +5,15 @@
 Migalha::Migalha(int e, int x, int y)
 	:energia(e), x(x), y(y) { }
 
+Migalha::Migalha(Migalha& mig)
+{
+	energia = mig.energia;
+	x = mig.x;
+	y = mig.y;
+
+
+}
+
 void Migalha::set_energia(int e)
 {
 	this->energia = e;

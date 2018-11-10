@@ -34,6 +34,7 @@ public:
 	Mundo(int l, int et);
 	
 	Mundo(Mundo &m);
+	Mundo& operator=(const Mundo& m);
 
 	void setLim(int l);
 	void set_energ_ninho(int e);

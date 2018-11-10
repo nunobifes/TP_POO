@@ -1,5 +1,5 @@
 //Um ninho serve essencialmente para criar 
-//novas formigas e também como refúgio de algumas das formigas existentes na sua comunidade.
+//novas formigas e tambï¿½m como refï¿½gio de algumas das formigas existentes na sua comunidade.
 
 #include "Formiga.h"
 #include "Ninho.h"
@@ -14,6 +14,18 @@ Ninho::Ninho(int id, int e, int x, int y, bool g, Comunidade* c, Mundo* m)
 	e_base = energia;
 	
 	//cerr << "id: " << id << " energia: " << energia << " posx: " << this->x << " posy: " << this->y << endl;
+}
+
+Ninho::Ninho(Ninho& n)
+{
+	id = n.id;
+	energia = n.energia;
+	x = n.x;
+	y = n.y;
+	guerra = n.guerra;
+	cn = n.cn;
+	mn = n.mn;
+	e_base = n.e_base;
 }
 
 void Ninho::set_comunid(Comunidade* c)

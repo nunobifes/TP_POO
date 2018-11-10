@@ -30,6 +30,7 @@ class Comunidade {
 
 public:
 	Comunidade(Mundo* m, int cor);
+	Comunidade(Comunidade& c);
 	//Comunidade(Ninho *id, Ninho *cor);
 
 	
@@ -51,6 +52,7 @@ public:
 	string lista_info() const;
 
 	~Comunidade();
+
 
 
 };
