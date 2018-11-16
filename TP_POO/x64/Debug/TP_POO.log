@@ -1,1 +1,27 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Platforms\x64\PlatformToolsets\v141\Toolset.targets(36,5): error MSB8036: The Windows SDK version 10.0.17134.0 was not found. Install the required version of Windows SDK or change the SDK version in the project property pages or by right-clicking the solution and selecting "Retarget solution".
+﻿  Comandos.cpp
+  Comunidade.cpp
+  Consola.cpp
+  Formiga.cpp
+  Gestor.cpp
+  Migalha.cpp
+  Mundo.cpp
+  Ninho.cpp
+  Principal.cpp
+c:\users\nunob\onedrive - isec\escola\2017-18\2ºsemestre\poo\tp_poo\tp_poo\principal.cpp(18): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Regra.cpp
+  RegraAssalta.cpp
+  RegraAtacaInimigas.cpp
+  RegraComeMigalha.cpp
+  RegraFoge.cpp
+  RegraPasseia.cpp
+  RegraPersegue.cpp
+  RegraProcuraMigalha.cpp
+  RegraProtege.cpp
+  RegraProtegida.cpp
+  RegraVaiPara.cpp
+  Generating Code...
+  Compiling...
+  RegraVaiParaNinho.cpp
+  Screen.cpp
+  Generating Code...
+  TP_POO.vcxproj -> C:\Users\nunob\OneDrive - ISEC\Escola\2017-18\2ºsemestre\POO\TP_POO\x64\Debug\TP_POO.exe

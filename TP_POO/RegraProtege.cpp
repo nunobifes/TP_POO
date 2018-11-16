@@ -17,7 +17,3 @@ void RegraProtege::Accao(Mundo * m, Formiga * form)
 {
 }
 
-Regra * RegraProtege::duplica() const
-{
-	return new RegraProtege(*this);
-}

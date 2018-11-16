@@ -12,21 +12,23 @@ using namespace std;
 
 class Migalha
 {
-	int energia;
+	double energia;
+	double energ_b;
 	int x;
 	int y;
 
 public:
 	
-	Migalha(int e, int x, int y);
+	Migalha(double e, int x, int y);
 
 	Migalha(Migalha & mig);
 
-	void set_energia(int e);
+	void set_energia(double e);
 	void set_posx(int x);
 	void set_posy(int y);
 
-	int get_energia() const;
+	double get_energia() const;
+	double get_energiaB() const;
 	int get_posx() const;
 	int get_posy() const;
 

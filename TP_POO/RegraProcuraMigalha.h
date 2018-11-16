@@ -3,7 +3,7 @@
 
 class RegraProcuraMigalha : public Regra
 {
-	Migalha *mig = nullptr;
+	Migalha *mig;
 
 public:
 	RegraProcuraMigalha();
@@ -13,7 +13,9 @@ public:
 	virtual bool verificaCondicao(Mundo *m, Formiga *form);
 	virtual void Accao(Mundo *m, Formiga *form);
 
-	virtual Regra* duplica() const override;
+	virtual Regra* duplica() const override {
+		return new RegraProcuraMigalha(*this);
+	}
 
 	
 

@@ -172,7 +172,7 @@ void Screen::desenha(Mundo* m)
 		x = corrige_posX(migalha->get_posx());
 		y = corrige_posY(migalha->get_posy());
 		if(m->get_lim())
-		if (x > 48 && x < 90 && y > 17 && y < 38) {
+		if (x > 48 && x < 89 && y > 17 && y < 38) {
 			Consola::gotoxy(x, y);
 			Consola::setTextColor(Consola::AMARELO_CLARO);
 			cout << "*";
@@ -193,7 +193,7 @@ void Screen::desenha(Mundo* m)
 				Formiga* form = comu->get_formiga()[j];
 				xf = corrige_posX(form->get_posX());
 				yf = corrige_posY(form->get_posY());
-				if (xf > 48 && xf < 90 && yf > 17 && yf < 39) {
+				if (xf > 48 && xf < 89 && yf > 17 && yf < 38) {
 					Consola::gotoxy(xf, yf);
 					
 					Consola::setTextColor(comu->get_cor());
@@ -207,7 +207,7 @@ void Screen::desenha(Mundo* m)
 			// NINHOS
 			xn = corrige_posX(comu->get_ninho()->getPosX());
 			yn = corrige_posY(comu->get_ninho()->getPosY());
-			if (xn > 48 && xn < 90 && yn > 17 && yn < 39) {
+			if (xn > 48 && xn < 89 && yn > 17 && yn < 38) {
 				Consola::gotoxy(xn, yn);
 				Consola::setTextColor(comu->get_cor());
 				cout << "N";

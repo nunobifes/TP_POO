@@ -14,7 +14,7 @@ using namespace std;
 
 int flagEnerg = 0, flagTam = 0, flagPerc = 0, flagMEnerg = 0, flagMPerc = 0, flagMMax = 0;
 char t;
-int op, linhas = 0, energia = 0, energia_perc = 0, energia_transf = 0, per_miga = 0, energia_miga = 0, max_miga = 0, linha= 0, coluna= 0, n=0, f = 0, vezes = 0;
+int op, linhas = 0, energia = 0, energia_perc = 0, energia_transf = 0, per_miga = 0, energia_miga = 0, max_miga = 0, linha= 0, coluna= 0, n=0, ni = 0, f = 0, vezes = 0;
 string nome, comando;
 
 
@@ -438,14 +438,15 @@ bool Comandos::menu_simul(vector <Mundo*> *saves, Mundo** ppm, Screen* s)const {
 		break;
 	case 10:	// ninho entrar em guerra
 		iss >> n;
+		iss >> ni;
 
-		m->modo_guerra(true, n);
+		m->modo_guerra(n, ni);
 		break;
 
 	case 11:	// ninho entrar em paz
 		iss >> n;
-
-		m->modo_guerra(false, n);
+		
+		m->modo_guerra(n, 0);
 		break;
 
 	case 12:	// gerir formigas Soldado

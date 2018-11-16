@@ -20,6 +20,7 @@ class Mundo {
 	vector <Migalha*> mig;
 	vector <int> cor;
 	string nome;
+	int ite;
 	int cconta;
 	int lim_max;
 	int energia_ninho;
@@ -45,6 +46,8 @@ public:
 	void set_m_per_inicial(int mpe);
 	void set_m_max(int mm);
 	void set_nome(string n);
+	int get_energ_perc() const;
+	int get_energ_transf() const;
 
 	int get_energia_ninho() const;
 	int get_posx_ninho() const;
@@ -57,14 +60,17 @@ public:
 	int get_m_max() const;
 	string get_nome() const;
 
+	int get_ite() const;
+
 
 	void add_energia_ninho(int n, int e);
 	void add_energia_formiga(int x, int y, int e);
 	void cria_comunidade();
 	void avanca_tempo(int vezes);
-	void modo_guerra(bool g, int n);
+	void modo_guerra(int n, int ni);
 	void cria_migalha(int x, int y);
 	void comeu_migalha();
+	void apaga_migalha(Migalha* miga);
 	void preenche_cor_vector();
 	void elimina_comunidade(int n);
 	string lista_info() const;

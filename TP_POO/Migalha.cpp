@@ -2,8 +2,11 @@
 
 
 
-Migalha::Migalha(int e, int x, int y)
-	:energia(e), x(x), y(y) { }
+Migalha::Migalha(double e, int x, int y)
+	:energia(e), x(x), y(y)
+{
+	energ_b = energia;
+}
 
 Migalha::Migalha(Migalha& mig)
 {
@@ -14,7 +17,7 @@ Migalha::Migalha(Migalha& mig)
 
 }
 
-void Migalha::set_energia(int e)
+void Migalha::set_energia(double e)
 {
 	this->energia = e;
 }
@@ -29,9 +32,13 @@ void Migalha::set_posy(int y)
 	this->y = y;
 }
 
-int Migalha::get_energia() const
+double Migalha::get_energia() const
 {
 	return energia;
+}
+double Migalha::get_energiaB() const
+{
+	return energ_b;
 }
 
 int Migalha::get_posx() const

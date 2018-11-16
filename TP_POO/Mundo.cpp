@@ -6,6 +6,7 @@ Mundo::Mundo(int l, int et)
 	: lim_max(l), energia_transf(et)
 {
 	cconta = 0;
+	ite = 0;
 	preenche_cor_vector();
 }
 
@@ -98,6 +99,16 @@ void Mundo::set_nome(string n)
 }
 
 // GET'S
+int Mundo::get_energ_perc() const
+{
+	return perc_energia;
+}
+int Mundo::get_energ_transf() const
+{
+	
+	return energia_transf;
+}
+
 int Mundo::get_lim() const
 {
 	return lim_max;
@@ -138,6 +149,11 @@ int Mundo::get_m_max() const
 string Mundo::get_nome() const
 {
 	return nome;
+}
+
+int Mundo::get_ite() const
+{
+	return ite;
 }
 
 void Mundo::add_energia_ninho(int n, int e)
@@ -215,93 +231,72 @@ void Mundo::avanca_tempo(int vezes)
 
 		for (auto i = 0; i < get_comunidade().size(); i++)
 		{
-			// NINHOS
 			Comunidade *comu = get_comunidade().at(i);
-
-			//FORMIGAS
-			for (auto j = 0; j < comu->get_formiga().size(); j++)
-			{
-				Formiga* form = comu->get_formiga().at(j);
-				Ninho* n = comu->get_ninho();
-
-				form->anda(this);
-				/*if (form->get_posX() == n->getPosX() && form->get_posY() == n->getPosY())
-				{
-					if (form->get_energia() < (form->get_energiab()*0.5))
-					{
-						if(n->getEnergia() > n->get_energia_b())
-						{
-							n->contr_energia(-(this->energia_transf));
-							form->contr_energia(this->energia_transf);
-						}else
-						{
-							form->anda(this);
-						}
-
-
-					}
-					else if (form->get_energia() > form->get_energiab())
-					{
-						n->contr_energia(this->energia_transf);
-						form->contr_energia(-(this->energia_transf));
-
-					}
-					else
-					{
-						form->anda(this);
-					}
-				}else if(n->getEnergia() > (n->get_energia_b() + this->perc_energia))
-				{
-					comu->add_formiga(this->lim_max, 0, n->getPosX(), n->getPosY());
-					n->contr_energia(-(this->perc_energia));
-				}*/
-				
-				// se energia for menor ou igual a 0
-				if (form->get_energia() <= 0)
-					comu->mata_formiga(form->get_posX(), form->get_posY());
-				
-				
-			}
-			
+			comu->avanca(this);
 		}
-		comeu_migalha();
+		for(auto i = 0; i < get_migalha().size(); i++)
+		{
+			Migalha* mig = get_migalha().at(i);
+			if (mig->get_energia() <= (mig->get_energiaB()*0.1))
+				apaga_migalha(mig);
+			
+			mig->set_energia(mig->get_energia() - 1);
+		}
 		cria_migalha(-1, -1);
-		
+		ite++;
 	}
 	
 }
 
-void Mundo::modo_guerra(bool g, int n)
+void Mundo::modo_guerra(int n, int ni)
 {
+	
+
+	
+
+	Comunidade *cini = nullptr;
+	for (auto i = 0; i < get_comunidade().size(); i++)
+	{
+		cini = get_comunidade().at(i);
+		if (cini->get_id() == ni && cini->get_guerra() == nullptr)
+			break;
+		if (i == get_comunidade().size() && cini->get_guerra() == nullptr)
+			ni = 0;
+	}
+
+
+
 	for(auto i = 0; i < get_comunidade().size(); i++)
 	{
 		Comunidade *c = get_comunidade().at(i);
-		if (c->get_id() == n)
-			c->modo_guerra(g);
+		if (ni == 0)
+		{
+			if(c->get_guerra()!=nullptr)
+			{
+				c->modoPaz();
+				break;
+			}
+				
+		}
+		else if (c->get_id() == n && c->get_guerra()==nullptr) {
+
+			c->setGuerra(cini);
+			cini->setGuerra(c);
+		}
 	}
 }
 
-void Mundo::comeu_migalha()
+
+void Mundo::apaga_migalha(Migalha *miga)
 {
-	for (auto i = 0; i < get_comunidade().size(); i++)
+	for (auto i = 0; i < mig.size(); i++)
 	{
-		Comunidade* c = get_comunidade().at(i);
-		//c->comeu_migalha(this->mig);
-		for(auto j = 0; j < c->get_formiga().size(); j++)
-		{
-			Formiga* f = c->get_formiga().at(j);
-			for(auto k = 0; k < get_migalha().size(); k++)
-			{
-				//mig.at(k);
-				if((mig.at(k)->get_posx() == f->get_posX()) && (mig.at(k)->get_posy() == f->get_posY()))
-				{
-					mig.erase(mig.begin() + k);
-					f->contr_energia(m_e_inicial);
-				}
-			}
-		}
+		if (mig.at(i) == miga)
+			mig.erase(mig.begin() + i);
 	}
-	
+
+
+
 }
 
 void Mundo::preenche_cor_vector()
